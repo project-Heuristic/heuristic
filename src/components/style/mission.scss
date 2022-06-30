@@ -1,0 +1,59 @@
+.mission{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    box-sizing: border-box; 
+    justify-content: center;
+    align-items: center;
+    padding:0px 100px;
+
+}
+.MissionImg{
+    height: 55%;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 50px;
+.img{
+height: 100%;
+width: 100%;
+}
+}
+.missionContent{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: -80px;
+    gap:40px;
+    width: 90%;
+    b{
+        font-size: 40px;
+
+        background: var(--text-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    p{
+        color: var(--solid-grey);
+        font-family: 'Archivo';
+        font-size: 20px;
+        line-height: 1.5;
+        letter-spacing: 1.2px;
+        padding-right: 90px;
+    }
+    button{
+        background-color: var(--solid-white);
+        border:3px solid var(--color-1);
+        width:180px;
+        height: 55px;
+        border-radius: 27px;
+        color: var(--color-1);
+        font-size: 20px;
+        font-family: var(--font);
+        transition: all 0.3s ease;
+        &:hover{
+            background-color: var(--color-1);
+            color: var(--solid-white);
+        }
+    }
+}

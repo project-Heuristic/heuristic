@@ -1,0 +1,73 @@
+.about {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  gap: 10px;
+  margin-top: 15vh;
+  overflow-x: hidden;
+  b {
+    font-size: 50px;
+
+    background: var(--text-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  p {
+    color: var(--solid-grey);
+    margin-top: 10px;
+    line-height: 1.2;
+    font-size: 20px;
+    font-family: 'Archivo';
+    letter-spacing: 1.2px;
+    font-weight: 400;
+  }
+}
+
+
+#boxes{
+    width: 70vw;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-radius: 50px;
+    box-sizing: border-box;
+    gap:100px;
+    overflow-x: hidden;
+    #box{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap:20px;
+        flex-direction: column;
+        height: 60%;
+        width: 250px;
+        background-color: var(--solid-white);
+        border-radius: 13px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+       transition: transform 0.3s ease;
+        strong{
+            font-size: 21px;
+            margin-top: 30px;
+            color: var(--solid-black);
+        }
+        span{
+            font-size: 15px;
+            font-weight: 100;
+            font-family: 'Archivo';
+            color: var(--solid-grey);
+        }
+        .icon{
+            height: 50px;
+            width: 50px;
+        }
+        &:hover{
+transform: scale(1.05);
+        }
+    }
+}

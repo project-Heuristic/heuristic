@@ -1,0 +1,134 @@
+section {
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--solid-white);
+  display: flex;
+  font-family: var(--font);
+  .credentials {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 14px;
+    svg {
+      height: 30px;
+      width: 30px;
+      margin-left: -500px;
+      cursor: pointer;
+    }
+    b {
+      font-size: 40px;
+      font-weight: 900;
+      background: var(--text-gradient);
+
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 0px;
+    }
+    p {
+      font-size: 18px;
+      margin-bottom: 25px;
+      strong{
+        color: var(--color-1);
+        cursor: pointer;
+        &:hover{
+          color: var(--color-2);
+        }
+      }
+    }
+    .inputFields {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      label {
+        font-size: 20px;
+        font-weight: 500;
+      }
+      input,select {
+        width: 400px;
+        height: 45px;
+        border-radius: 12px;
+        border: 3px solid var(--color-1);
+        padding: 10px;
+        font-size: 18px;
+        outline: none;
+      }
+      select{
+        font-size: 20px;
+        margin: 0;
+        padding: 0;
+        border: none;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        border: 2px solid var(--color-1);
+        box-sizing: border-box;
+        padding: 8px;
+      }
+    }
+    .fpassword {
+      margin-right: -250px;
+      font-size: 15px;
+      cursor: pointer;
+      &:hover {
+        color: var(--color-2);
+      }
+    }
+    button {
+      width: 400px;
+      height: 50px;
+
+      font-family: var(--font);
+      font-size: 18px;
+      outline: none;
+      transition: all 0.3s ease-in;
+      cursor: pointer;
+      p {
+        margin: 0;
+      }
+      &:hover {
+        transform: scale(1.01);
+      }
+    }
+    .login {
+      background-image: var(--text-gradient);
+      color: var(--solid-white);
+      border-radius: 8px;
+    }
+    .google_login {
+      width: 400px;
+      height: 50px;
+
+      font-family: var(--font);
+      font-size: 18px;
+      outline: none;
+      background-color: var(--solid-white);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      p {
+        margin: 0;
+        font-size: 17px;
+        font-weight: 400;
+      }
+      svg{
+        height: 25px ;
+        width: 25px;
+        margin:0px ;
+      }
+      &:hover {
+        transform: scale(1.01);
+      }
+    }
+  }
+  .image {
+    width: 50%;
+    height: 100%;
+    padding: 100px;
+    box-sizing: border-box;
+  }
+}
