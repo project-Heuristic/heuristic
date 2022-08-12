@@ -14,6 +14,7 @@ function Login() {
           viewBox="0 0 24 24"
           stroke="currentColor"
           stroke-width="2"
+          className="back"
         >
           <path
             stroke-linecap="round"

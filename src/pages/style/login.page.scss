@@ -1,35 +1,34 @@
 section {
   height: 100vh;
-  width: 100vw;
-  background-color: var(--solid-white);
+  width: 100%;
   display: flex;
-  font-family: var(--font);
+  font-family: var(--font-3);
+ 
   .credentials {
     width: 50%;
+    // background-color: red;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 14px;
+    gap: 0.7rem;
     svg {
-      height: 30px;
-      width: 30px;
+      height: 2rem;
+      width: 2rem;
       margin-left: -500px;
       cursor: pointer;
+      color: var(--color-dark);
     }
     b {
-      font-size: 40px;
+      font-size: 3rem;
       font-weight: 900;
-      background: var(--text-gradient);
-
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--color-dark);
       margin: 0px;
     }
     p {
-      font-size: 18px;
-      margin-bottom: 25px;
+      font-size: 1.2rem;
+      margin-bottom: 1.7rem;
       strong{
         color: var(--color-1);
         cursor: pointer;
@@ -41,23 +40,25 @@ section {
     .inputFields {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-
+      gap: 0.7rem;
+      width: 55%;
       label {
-        font-size: 20px;
+        font-size: 1rem;
         font-weight: 500;
       }
       input,select {
-        width: 400px;
-        height: 45px;
-        border-radius: 12px;
-        border: 3px solid var(--color-1);
-        padding: 10px;
-        font-size: 18px;
+        width: 100%;
+        height: 3rem;
+        border-radius: 0.6rem;
+        border: 3px solid var(--color-four);
+        padding: 0.7rem;
+        font-size: 1.3rem;
         outline: none;
       }
       select{
-        font-size: 20px;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--color-dark);
         margin: 0;
         padding: 0;
         border: none;
@@ -65,24 +66,25 @@ section {
         border: 2px solid var(--color-1);
         box-sizing: border-box;
         padding: 8px;
+        border: 2px solid var(--color-four);
       }
     }
     .fpassword {
       margin-right: -250px;
-      font-size: 15px;
+      font-size: 1rem;
       cursor: pointer;
       &:hover {
         color: var(--color-2);
       }
     }
     button {
-      width: 400px;
+      width: 55%;
       height: 50px;
 
       font-family: var(--font);
-      font-size: 18px;
+      font-size: 1.3rem;
       outline: none;
-      transition: all 0.3s ease-in;
+      transition: all 0.2s ease-in;
       cursor: pointer;
       p {
         margin: 0;
@@ -92,14 +94,20 @@ section {
       }
     }
     .login {
-      background-image: var(--text-gradient);
-      color: var(--solid-white);
+   background-color: var(--color-dark);
+      color: var(--color-light);
       border-radius: 8px;
+      border: 0;
+      &:hover {
+        background-color: var(--color-three);
+        color: var(--color-dark);
+        transform: scale(1.009);
+      } 
+     
     }
     .google_login {
-      width: 400px;
-      height: 50px;
-
+     padding: 0.8rem ;
+width: 55%;
       font-family: var(--font);
       font-size: 18px;
       outline: none;
@@ -108,8 +116,9 @@ section {
       display: flex;
       align-items: center;
       justify-content: center;
+      gap:1rem;
       border-radius: 5px;
-      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      box-shadow: rgba(0, 0, 0, 0.425) 0px 1px 4px;
       p {
         margin: 0;
         font-size: 17px;
@@ -121,7 +130,7 @@ section {
         margin:0px ;
       }
       &:hover {
-        transform: scale(1.01);
+        transform: scale(1.009);
       }
     }
   }
@@ -130,5 +139,65 @@ section {
     height: 100%;
     padding: 100px;
     box-sizing: border-box;
+  }
+  @media (max-width: 1000px) {
+    // flex-direction: column;
+    .credentials{
+      width: 100%;
+   
+    }
+    .image{
+      display: none;
+    }
+  }
+  @media (max-width: 777px) {
+    // flex-direction: column;
+    .credentials{
+      width: 100%;
+   
+      b{
+        font-size: 2rem;
+      }
+      .back{
+        height: 1.5rem;
+        width: 1.5rem;
+        display: none;
+      }
+      p{
+        font-size: 1rem;
+        margin-bottom: 1.7rem;  
+      }
+      .inputFields{
+        width: 80%;
+        label{
+          font-size: 0.8rem;
+        }
+        input{
+          font-size: 0.8rem;
+          width: 100%;
+        }
+      }
+      .fpassword{
+        font-size: 0.8em;
+        margin: 0.5rem 3rem;
+      }
+      .google_login,.login{
+        width: 80%;
+        font-size: 1rem;
+        padding: 1rem;
+        height: 3rem;
+        p {
+          font-size: 0.9rem;
+        }
+        svg{
+          height: 1.2rem ;
+          width: 1rem;
+          margin:0px ;
+        }
+      }
+    }
+    .image{
+      display: none;
+    }
   }
 }

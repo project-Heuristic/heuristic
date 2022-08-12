@@ -13,7 +13,7 @@ function homepage() {
       <Home></Home>
       <About></About>
       <Mission></Mission>
-      <Testimonials></Testimonials>
+      {/* <Testimonials></Testimonials> */}
       <Footer></Footer>
     </div>
   );

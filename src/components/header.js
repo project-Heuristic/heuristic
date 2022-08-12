@@ -1,33 +1,69 @@
-import React from "react";
-import { ReactComponent as Logo } from "../assets/logo.svg";
-
-import {useNavigate} from 'react-router-dom';
-
+/* eslint-disable no-unused-expressions */
+import React, { useState ,useEffect} from "react";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { IconContext } from "react-icons";
 import "./style/header.scss";
-const Header = () => {
-  const naviagate=useNavigate();
-  return (
-    <div className="Navigation">
-      <div className="Logo_container">
-        <Logo className="logo"></Logo>
-        <span>EURISTIC</span>
-      </div>
-      <div className="sections">
-        <div>
-          <span onClick={() => window.location.replace("/#home")}>Home</span>
-        </div>
-        <div  onClick={() => window.location.replace("/#about")}>
-          <span>About</span>
-        </div>
-        <div onClick={() => window.location.replace("/#mission")}>
-          <span>Mission</span>
-        </div>
-        <div onClick={() => window.location.replace("/#testimonials")}>
-          <span>Testimonials</span>
-        </div>
-      </div>
+import * as FaIcons from "react-icons/fa";
+import * as AiIcons from "react-icons/ai";
+import { SidebarData } from "./SidebarData";
+import "./style/Navbar.css";
 
-      <button className="log_in" onClick={()=>naviagate('/login')}>Login</button>
+const Header = () => {
+  
+  const [sidebar, setSidebar] = useState(false);
+const navigate =useNavigate();
+  const showSidebar = () => setSidebar(!sidebar);
+
+  const [stickyClass, setStickyClass] = useState("");
+
+  function stickNavbar() {
+      let windowHeight = window.scrollY;
+      // console.log(windowHeight);
+      windowHeight >50 ?setStickyClass('toggle'):setStickyClass('');
+  }
+
+  useEffect(() => {
+      window.addEventListener("scroll", stickNavbar);
+  }, []);
+
+  return (
+    <div className={`navigation ${stickyClass}`}>
+      <i class="ri-menu-2-line" onClick={()=>showSidebar()} ></i>
+      <b>
+        HEURISTIC
+
+      </b>
+      <ul className="header_nav">
+
+      {
+        SidebarData.map((data)=>(
+          <li>{data.title}</li>
+          ))
+        }
+        </ul>
+        <button onClick={()=>navigate('/login')}>
+          Login
+        </button>
+        {
+         sidebar?
+        <aside>
+        <div className="heading">
+
+      <b>HEURISTIC</b>
+        <i class="ri-close-fill"onClick={()=>showSidebar()}></i>
+        </div>
+      <ul className="ext_cont">
+        {
+           SidebarData.map((data)=>(
+            <li>{data.title}</li>
+            
+            ))
+        }
+      </ul>
+    </aside>: ''
+
+        }
     </div>
   );
 };

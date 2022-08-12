@@ -10,16 +10,12 @@ function Footer() {
   return (
     <>
     <div className="footer">
-      <div className="card">
-        <span>Change your life with Heuristic</span>
-        <button>Read More</button>
-      </div>
+    
 
       <div className="footer_content">
         <div className="first_section">
           <div className="Logo_footer">
-            <Logo className="logo"></Logo>
-            <span>EURISTIC</span>
+            HEURISTIC
           </div>
           <p>One stop sollution for your problems</p>
         </div>
@@ -41,12 +37,11 @@ function Footer() {
         </div>
 
         <div className="media_container">
-          <span>Social Media</span>
+        
           <div className="social_media">
-            <Facebook className="social"></Facebook>
-            <Insta className="social"></Insta>
-            <Twitter className="social"></Twitter>
-            <Youtube className="social"></Youtube>
+          <i class="ri-facebook-circle-line"></i>           
+          <i class="ri-instagram-line"></i>
+          <i class="ri-twitter-fill"></i>
           </div>
         </div>
       </div>

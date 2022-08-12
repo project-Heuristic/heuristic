@@ -1,23 +1,25 @@
 import React from "react";
 import "./style/mission.scss";
 
-import { ReactComponent as Mission } from "../assets/mission.svg";
+import { ReactComponent as Side } from "../assets/mission.svg";
 
 function mission() {
   return (
-    <div className="mission" id="mission">
-      <div className="MissionImg">
-        <Mission className="img"></Mission>
+    <section className="about" id="mission">
+    <div className="top">
+      <p className="top_head">Mission </p>
+      <div className="top_mid">
+      Help Students Virtualy to overcome from their situations
       </div>
-      <div className="missionContent">
-        <b>Help Students Virtualy to overcome from their <br></br>situations</b>
-        <p>
-          Lorem sit abbhbh hbjasd bhjkhd mlklasd jkjn jklje djkljhjsd hhasdn
-          jklhjds njhkdsa hjkahds njhsjkdbakjs njasjkdnajkndk njkhasjkd
-        </p>
-        <button>Learn More</button>
-      </div>
+      <p className="top_end">10% Instant Discount up to INR 1250 on SBI Credit Card Non-EMI Transactions. Minimum purchase of INR 5000 </p>
+      <button>Learn More</button>
+
     </div>
+    <div className="side_img">
+      <Side className="img"></Side>
+    </div>
+      
+  </section>
   );
 }
 

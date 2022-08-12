@@ -1,13 +1,15 @@
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap");
 :root {
- 
-  --background-color: #f9f9ff;
-  --color-1: #001064;
-  --color-2 : #5f45ff;
-  --solid-black:#000000;
-  --solid-white:#ffffff;
-  --solid-grey:#000000a3;
-  --btn-gradient: linear-gradient(#130470, #5f45ff);
-  --text-gradient: -webkit-linear-gradient(#130470, #000000);
-  --font:'Archivo Black';
+  --color-light: #ffffff;
+  --color-two: #e8ffea;
+  --color-three: #76df80;
+  --color-four: #588c70;
+  --color-dark: #385748;
+
+
+
+  --font: "Archivo Black";
+  --font-2: "Poppins";
+  --font-3: "Montserrat";
 }
