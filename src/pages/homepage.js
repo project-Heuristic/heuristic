@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../components/header.js";
 import Home from '../components/home.js';
 import About from "../components/about.js";
@@ -6,7 +6,10 @@ import Mission from '../components/mission.js'
 import Testimonials from '../components/testimonials.js'
 import Footer from '../components/footer.js'
 import "./style/homepage.scss";
-function homepage() {
+import { useUserAuth } from "../context/userAuthContext.js";
+function Homepage() {
+  const {user}=useUserAuth();
+  console.log(user);
   return (
     <div className="homepage">
       <Header></Header>
@@ -19,4 +22,4 @@ function homepage() {
   );
 }
 
-export default homepage;
+export default Homepage;

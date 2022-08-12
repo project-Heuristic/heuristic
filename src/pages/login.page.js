@@ -1,12 +1,43 @@
 import "./style/login.page.scss";
-import React from "react";
+import React ,{useState} from "react";
 import { ReactComponent as Img } from "../assets/credential.svg";
 import { useNavigate } from "react-router-dom";
+import { useUserAuth } from "../context/userAuthContext";
+
 function Login() {
   const naviagate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [userType,setUserType]= useState("");
+  const { logIn ,googleSignIn} = useUserAuth();
+
+  const submit = async (e) => {
+    e.preventDefault();
+    setError(""); 
+    try {
+      await logIn(email, password);
+      naviagate(`/${userType}`)
+   
+    } catch (err) {
+      setError(err.message);
+      console.log(error)
+    }
+  };
+  const googleSignInStart=async (e)=>{
+    e.preventDefault();
+    try{
+   await googleSignIn();
+   naviagate("/students")
+
+    }catch(err){
+      setError(err.message);
+    }
+  
+  }
   return (
     <section>
-      <div className="credentials">
+      <form className="credentials" onSubmit={submit} >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-6 w-6"
@@ -25,28 +56,42 @@ function Login() {
         </svg>
         <b>Welcome back</b>
         <p>welcome back please eneter your details</p>
+        
         <div className="inputFields">
           <label>Email</label>
-          <input type="text"></input>
+          <input
+            type="text"
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          ></input>
         </div>
         <div className="inputFields">
           <label>Password</label>
-          <input type="password"></input>
+          <input
+            type="password"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          ></input>
         </div>
         <div className="inputFields">
           <label>Login as</label>
-          <select name="userType" id="userType">
+          <select name="userType" id="userType" onChange={(e) => {
+              setUserType(e.target.value);
+            }}>
             <option value="student">Student</option>
             <option value="teacher">Teacher</option>
             <option value="admin">Admin</option>
-         
           </select>
         </div>
         <p className="fpassword" onClick={() => naviagate("/forgotPassword")}>
           Forgot Password?
         </p>
-        <button className="login" onClick={() => naviagate("/students")}>Log In</button>
-        <div className="google_login">
+        <button className="login" onClick={submit}>
+          Log In
+        </button>
+        <div className="google_login" onClick={googleSignInStart}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 48 48"
@@ -75,7 +120,7 @@ function Login() {
         <p style={{ marginTop: "10px" }} onClick={() => naviagate("/Signup")}>
           Dont Have an Account ? <strong>Signup</strong>
         </p>
-      </div>
+      </form>
       <Img className="image"></Img>
     </section>
   );

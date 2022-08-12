@@ -1,12 +1,40 @@
 import "./style/login.page.scss";
-import React from "react";
+import React, { useState } from "react";
 import { ReactComponent as Img } from "../assets/credential.svg";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useUserAuth } from "../context/userAuthContext";
 function Login() {
-    const naviagate=useNavigate();
+  const naviagate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const { signUp ,googleSignIn} = useUserAuth();
+  const submit = async (e) => {
+    e.preventDefault();
+    setError("");
+    try {
+      await signUp(email, password);
+      console.log(email, password);
+      naviagate('/students')
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+  const googleSignInStart=async (e)=>{
+    e.preventDefault();
+    try{
+   await googleSignIn();
+   naviagate("/students")
+
+    }catch(err){
+      setError(err.message);
+    }
+  
+  }
   return (
     <section>
-      <div className="credentials">
+      <form className="credentials" onSubmit={submit}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-6 w-6"
@@ -19,8 +47,8 @@ function Login() {
             stroke-linecap="round"
             stroke-linejoin="round"
             d="M10 19l-7-7m0 0l7-7m-7 7h18"
-          onClick={()=>naviagate('/')}
-         />
+            onClick={() => naviagate("/")}
+          />
         </svg>
         <b>Sign Up</b>
         <p>Please enter your details correct details</p>
@@ -30,20 +58,29 @@ function Login() {
         </div>
         <div className="inputFields">
           <label>Email</label>
-          <input type="text"></input>
+          <input type="text"  onChange={(e) => {
+              setEmail(e.target.value);
+            }}></input>
         </div>
         <div className="inputFields">
           <label>Password</label>
-          <input type="password"></input>
+          <input
+            type="password"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          ></input>
         </div>
         <div className="inputFields">
           <label>Confirm Password</label>
           <input type="password"></input>
         </div>
-      
-        <button className="login">Log In</button>
-        <div className="google_login">
-        <svg
+
+        <button className="login" onClick={() => submit()}>
+          Sign Up
+        </button>
+        <div className="google_login" onClick={googleSignInStart}>
+          <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 48 48"
             width="48px"
@@ -68,8 +105,10 @@ function Login() {
           </svg>
           <p>Continue with google</p>
         </div>
-        <p style={{marginTop:'10px'}} onClick={() => naviagate("/Login")} >Alredy Have an Account ? <strong >Login</strong></p>
-      </div>
+        <p style={{ marginTop: "10px" }} onClick={() => naviagate("/Login")}>
+          Alredy Have an Account ? <strong>Login</strong>
+        </p>
+      </form>
       <Img className="image"></Img>
     </section>
   );
