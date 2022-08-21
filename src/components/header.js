@@ -8,9 +8,11 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { SidebarData } from "./SidebarData";
 import "./style/Navbar.css";
+import {useUserAuth} from "../context/userAuthContext.js"
 
 const Header = () => {
-  
+  const {user,signOut}=useUserAuth();
+  // console.log(user.uid);
   const [sidebar, setSidebar] = useState(false);
 const navigate =useNavigate();
   const showSidebar = () => setSidebar(!sidebar);
@@ -42,9 +44,14 @@ const navigate =useNavigate();
           ))
         }
         </ul>
-        <button onClick={()=>navigate('/login')}>
+        {
+          user?.uid?( <button  onClick={signOut}>
+          Sign Out
+        </button>):( <button  onClick={()=>navigate('/login')}>
           Login
-        </button>
+        </button>)
+        }
+       
         {
          sidebar?
         <aside>

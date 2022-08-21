@@ -4,9 +4,9 @@ import { useUserAuth } from "./context/userAuthContext";
 
 export default function ProtectedRoute({ children }) {
   let {user} = useUserAuth();
-  if (!user) {
-    console.log("mun kama karuch");
-    return <Navigate to="/" />;
+  if (user) {
+
+    // return <Navigate to="/" />;
+    return children;
   }
-  return children;
 }

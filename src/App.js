@@ -7,6 +7,8 @@ import Signup from "./pages/SignupPage.js";
 import ForgotPassword from "./pages/forgotPassword";
 import ResetPassword from "./pages/resetPasword";
 import Students from "./students/index";
+import Teacher from "./teacher/index";
+
 import {UserAuthContextProvider} from './context/userAuthContext'
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
         <Route path="forgotPassword" element={<ForgotPassword />} />
         <Route path="resetPassword" element={<ResetPassword />} />
         <Route path="students" element={<ProtectedRoute><Students /></ProtectedRoute>}></Route>
+        <Route path="teacher" element={<ProtectedRoute><Teacher /></ProtectedRoute>}></Route>
       </Routes>
       </UserAuthContextProvider>
     </div>

@@ -10,7 +10,7 @@ function Students() {
         <Sidebar/>
         <MainDash/>
         
-        <RightSide/>
+        {/* <RightSide/> */}
       </div>
     </div>
   )

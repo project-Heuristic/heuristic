@@ -1,20 +1,125 @@
-.MainDash{
-    /* padding-top: 1rem; */
+.header{
+    height: 8vh;
+    width: 100%;
+    background-color: white;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+    align-items: center;
+    justify-content: center;
+display: none;
+}
+.cards{
+    
+}
+.videos{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+    .header b{
+        font-size: 1rem;
+        font-weight: bold;
+        color: #2f2f2f;
+        margin-left: 1rem;
+        margin-top: 0.5rem;
+    }
+    @media screen and (max-width: 769px) {
+        .header{
+        display: flex;
+    }
+
 }
 
-@media screen and (max-width: 1200px) {
-    .MainDash{
-        justify-content:flex-start;
-        margin-top: 2rem;
-    }
+.main{
+    padding: 2rem;
+    position: relative;
 }
+.main b{
+    font-size: 2rem;
+    color: #2f2f2f;
+}
+.main p{
+    color: var(--color-dark);
+    font-size:1rem;
+    font-weight: 500;
+    margin: 1rem 0;
+}
+.profile{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--color-dark);
+    position: absolute;
+    top:2rem;
+    right:3rem;
+    width: 10rem;
+    background-color:var(--color-one);
+    padding: 0.5rem 1rem;
+    border-radius: 0.3rem;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  }
+  .profile img{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+  }
+  .profile p{
+    margin: 0;
+  }
+  .cards{
+    width: 100%;
+    min-height:25vh;
+    height: fit-content;
+    margin: 3rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-@media screen and (max-width: 768px)
-{
-    .MainDash{
-        align-items: center;
+  }
+  .card{
+    width: 30%;
+    height: 10rem;
+    border-radius: 0.5rem;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    background-color: rgb(255, 255, 255);
+  }
+  @media screen and (max-width:1000px) {
+    .cards{
+        flex-direction: column;
+        /* align-items: center;
+        justify-content: center; */
+        gap:1rem;
+        
     }
-}
+   
+    .profile{
+        top:2rem;
+        right:0;
+        gap: 0.3rem;
+        position: absolute;
+        top:2rem;
+        right:3rem;
+        width: 6rem;
+        background-color:var(--color-one);
+        padding: 0.5rem 0.3rem ;
+    }
+    .profile img{
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 50%;
+    }
+
+    .main b{
+        font-size: 1.2rem;
+        color: #2f2f2f;
+    }
+    .main p{
+        color: var(--color-dark);
+        font-size:0.7rem;
+        font-weight: 500;
+        margin: 0.5rem 0;
+    }
+  }
