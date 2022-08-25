@@ -16,13 +16,14 @@ function Login() {
   const submit = async (e) => {
     e.preventDefault();
     setError("");
-    try {
-      await logIn(email, password);
+    console.log(userType);
+    // try {
+    //   await logIn(email, password);
     
-    } catch (err) {
-      setError(err.message);
-      console.log(error);
-    }
+    // } catch (err) {
+    //   setError(err.message);
+    //   console.log(error);
+    // }
   };
   const googleSignInStart = async (e) => {
     e.preventDefault();
@@ -63,7 +64,7 @@ function Login() {
             }}
           ></input>
         </div>
-          {/* <div className="inputFields">
+          <div className="inputFields">
             <label>Login as</label>
             <select
               name="userType"
@@ -76,7 +77,7 @@ function Login() {
               <option value="teacher">Teacher</option>
               <option value="admin">Admin</option>
             </select>
-          </div> */}
+          </div>
         <p className="fpassword" onClick={() => navigate("/forgotPassword")}>
           Forgot Password?
         </p>

@@ -10,16 +10,27 @@ import { signOut } from "firebase/auth";
 
 function Login() {
   const navigate = useNavigate();
+
+  
+  
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
   const [error, setError] = useState("");
   const [aadharImg, setAadharImg] = useState("");
   const [idImg, setIdImg] = useState("");
+  const [formStep, setFormstep] = useState(0);
   const [profileImg,setProfileImg]=useState("");
   const { signUp, googleSignIn, userData } = useUserAuth();
-
+  
   // console.log(user);
+  const [userType, setUserType] = useState("");
+  function nextStep() {
+    
+    setFormstep((cur) => cur + 1);
+    console.log('👍👍👍'+userType);
+  }
   const {
     watch,
     register,
@@ -72,10 +83,6 @@ function Login() {
       setError(err.message);
     }
   };
-  const [formStep, setFormstep] = useState(0);
-  function nextStep() {
-    setFormstep((cur) => cur + 1);
-  }
   function renderButtons() {
     if (formStep === 0) {
       return (
@@ -226,14 +233,22 @@ function Login() {
             </div>
             <div className="inputFields">
               <label>You are </label>
+             
+   
               <select
-                name="userType"
-                id="userType"
-                {...register("userType", { required: true })}
-              >
-                <option value="student">Student</option>
-                <option value="teacher">Teacher</option>
-              </select>
+              name="userType"
+              id="userType"
+              {...register("userType", { required: true })}
+              onChange={(e) => {
+                setUserType(e.target.value);
+              }}
+            >
+              <option value="student">Student</option>
+              <option value="teacher">Teacher</option>
+              <option value="admin">Admin</option>
+            </select>
+
+
               {errors.Name?.type === "userType" && (
                 <span style={{ color: "red", fontSize: "0.8rem", margin: "0" }}>
                   {" "}
@@ -272,7 +287,7 @@ function Login() {
               )}
             </div>
             <div className="inputFields">
-              <label>Institution Registration No/Roll No</label>
+              <label>Institution Registration {userType==='teacher'?'':' No/Roll No'}</label>
               <input
                 type="number"
                 {...register("IdNumber", { required: true })}
@@ -280,23 +295,23 @@ function Login() {
               {errors.IdNumber?.type === "required" && (
                 <span style={{ color: "red", fontSize: "0.8rem", margin: "0" }}>
                   {" "}
-                  Regd /RollNo Name is Required
+                  Registration /RollNo Name is Required
                 </span>
               )}
             </div>
-            <div className="inputFields">
-              <label>Aadhar Number </label>
-              <input
-                type="number"
-                {...register("AadharNumber", { required: true })}
-              />
-              {errors.AadharNumber?.type === "required" && (
-                <span style={{ color: "red", fontSize: "0.8rem", margin: "0" }}>
-                  {" "}
-                  Aadhar Number is Required
-                </span>
-              )}
-            </div>
+            {
+              userType  !== 'teacher'?
+              <> <div className="inputFields">
+              <label>Select Class </label>
+              <select>
+                <option>4th-7th</option>
+                <option>8th-10th</option>
+                <option>11th-12th</option>
+              </select>
+             
+            </div></>:''
+            }
+           
           </>
         ) : (
           ""
@@ -320,14 +335,8 @@ function Login() {
                 onDone={({ base64 }) => setIdImg({ selectFile: base64 })}
               ></FileBAse>{" "}
             </div>
-            <label>Select Aadhar Id</label>
-            <div className="filesImg">
-              <FileBAse
-                type="files"
-                multiple={false}
-                onDone={({ base64 }) => setAadharImg({ selectFile: base64 })}
-              ></FileBAse>{" "}
-            </div>
+           
+          
           </>
         ) : (
           ""

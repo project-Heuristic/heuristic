@@ -13,14 +13,14 @@ export default function Dashboard() {
  const navigate=useNavigate();
  const [students,setNewStudets]=useState(true);
  const [showResults, setShowResults] = useState(false);
- const [currentQuestion, setCurrentQuestion] = useState(3);
+ const [currentQuestion, setCurrentQuestion] = useState(0);
  const [score, setScore] = useState(0);
 
  const questions = [
    {
      text: "What is the capital of America?",
      options: [
-       { id: 0, text: "New York City", isCorrect: false },
+       { id: 0, text: " To help co-workers and to be in a peaceful environment. ", isCorrect: false },
        { id: 1, text: "Boston", isCorrect: false },
        { id: 2, text: "Santa Fe", isCorrect: false },
        { id: 3, text: "Washington DC", isCorrect: true },
@@ -90,7 +90,7 @@ setNewStudets(false);
    <>
  {
     students?
-    <div className="assesment">
+    <div className="assessment">
 
 
       {/* 1. Header  */}
