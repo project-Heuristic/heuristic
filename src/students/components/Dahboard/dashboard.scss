@@ -235,24 +235,24 @@ justify-content: center;
 flex-direction: column;
 .head{
     margin: 1rem 0;
-    font-size: 2rem;
+    font-size: 1.7rem;
     color: rgb(61, 61, 61);
 }
 .qoq{
     color: var(--color-four);
+    font-size: 1.3rem;
+    padding: 1rem 0;
 }
     .question-card {
         /* Center the div  */
         margin: 0 auto;
-      
+      box-sizing: border-box;
+      padding: 2rem 1rem;
         /* Dimensions  */
-        width: 80%; /* Can be in percentage also. */
+        width: 90%; /* Can be in percentage also. */
         height: auto;
-      
         /* Visual  */
-        background-color: transparent;
-        padding: 16px;
-        border-radius: 16px;
+        border-radius: 0.5rem;
         color: white;
         box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
           rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
@@ -263,20 +263,23 @@ flex-direction: column;
       }
       
       li {
-        margin-top: 1rem;
-        background-color: var(--color-two);
-        padding: 16px;
-        border: 3px solid var(--color-three);
-        border-radius: 2rem;
-        font-size: 20px;
-        color: var(--color-dark);
-        font-weight: 600;
+       font-size: 1rem;
+       color: black;
+       padding: 1rem;
+       border: 2px solid var(--color-three);
+       width: 60%;
+       margin: 1rem auto;
+       border-radius:3rem;
+       &:hover{
+              background-color: var(--color-two);
+       }
       }
       
       .question-text {
-        color: var(--color-dark);
-        font-size: 1.8rem;
+        color: rgb(87, 87, 87);
+        font-size: 1.5rem;
         margin: 1rem 0;
+        font-weight: 500;
       }
       
       /* Final Results  */
@@ -316,4 +319,45 @@ flex-direction: column;
         border-radius: 24px;
       }
 }
+
+.choose_statement{
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    width:95%;
+    align-items: center;
+    justify-content: center;
+    gap:3rem;
+    flex-direction: column;
+    margin: auto;
+    height: 90%;
+    h1{
+        font-size: 2.2rem;
+        color: var(--color-dark);
+    }
+    .selector{
+        width: 50rem;
+        
+    }
+    .ottt{
+        font-size: 1.5rem;
+        // background-color: red;
+        margin: 0.5rem;
+    }
+    textarea{
+        width:40rem;
+        height: 10rem;
+    }
+    button{
+        background-color: var(--color-four);
+        color: #fff;
+        border: none;
+        border-radius: 0.3rem;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;    
+    }
+}
+
 

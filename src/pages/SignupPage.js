@@ -67,7 +67,8 @@ function Login() {
         console.log("data", data);
         localStorage.setItem("UserData", JSON.stringify(data));
         console.log(Email, Password);
-       await signOut();
+        navigate("/students/dashboard", { state: data });
+      //  await signOut();
         // navigate("/teacher/dashboard", { state: data });
       } catch (err) {
         setError(err.message);
@@ -302,14 +303,28 @@ function Login() {
             {
               userType  !== 'teacher'?
               <> <div className="inputFields">
-              <label>Select Class </label>
-              <select>
-                <option>4th-7th</option>
-                <option>8th-10th</option>
-                <option>11th-12th</option>
+              <label>Select  Group </label>
+              <select      name="group"
+              id="group" {...register("group", { required: true })}
+             >
+                <option value='1'>(4th-7th)Foundational stage</option>
+                <option value='2'>(8th-10th)Preparatory stage</option>
+                <option value='3'>(11th-12th)Middle stage</option>
+                <option value='3'>(11th-12th)Secondary stage</option>
+                <option value='4'>(11th-12th)College / University</option>
               </select>
-             
-            </div></>:''
+              {errors.Name?.type === "group" && (
+                <span style={{ color: "red", fontSize: "0.8rem", margin: "0" }}>
+                  {" "}
+                  Please Select the Educational Type
+                </span>
+              )}
+            </div>
+            
+           
+
+            
+            </>:''
             }
            
           </>
