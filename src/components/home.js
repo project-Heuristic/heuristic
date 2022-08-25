@@ -6,9 +6,10 @@ import Fade from 'react-reveal/Fade';
 
 import Flip from 'react-reveal/Flip';
 import Bounce from 'react-reveal/Bounce';
+import { useNavigate } from "react-router-dom";
 export default function Home() {
 
-
+const navigate=useNavigate(); 
   return (
     <div className="home" id="home">
       <div className="home-content">
@@ -30,7 +31,7 @@ export default function Home() {
         </h2>
         <Fade>
         
-        <button>Get Started</button>
+        <button onClick={()=>navigate('/signup')}>Get Started</button>
         </Fade>
  
         

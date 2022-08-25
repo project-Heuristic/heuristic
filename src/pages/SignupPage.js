@@ -130,7 +130,7 @@ function Login() {
       <form className="credentials" onSubmit={handleSubmit(submitForm)}>
         {formStep < 4 ? (
           <>
-            <i class="ri-arrow-left-line back0"></i>
+            <i class="ri-arrow-left-line back0" onClick={()=>navigate('/')}></i>
             <b>Sign Up</b>
             <p>Please enter your details correct details</p>
             <span className="steps">

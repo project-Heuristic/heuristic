@@ -104,8 +104,6 @@ export default function Dashboard() {
               <button>View</button>
             </div>
           </div>
-        </div>
-        <div className="sessions">
           <div className="session">
             <Session className="sessionImg"></Session>
             <b
@@ -129,6 +127,8 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
+       
+       
       </div>
     </div>
   </div>
