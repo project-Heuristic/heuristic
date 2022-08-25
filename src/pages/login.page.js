@@ -7,7 +7,7 @@ import { useUserAuth } from "../context/userAuthContext";
 import Alert from "@mui/material/Alert";
 
 function Login() {
-  const naviagate = useNavigate();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -18,7 +18,7 @@ function Login() {
     setError("");
     try {
       await logIn(email, password);
-      naviagate(`/${userType}`);
+    
     } catch (err) {
       setError(err.message);
       console.log(error);
@@ -28,7 +28,7 @@ function Login() {
     e.preventDefault();
     try {
       await googleSignIn();
-      naviagate("/students");
+      navigate("/students");
     } catch (err) {
       setError(err.message);
     }
@@ -40,7 +40,8 @@ function Login() {
             {error}
           </Alert>   : ""}
       <form className="credentials" onSubmit={submit}>
-      <i class="ri-arrow-left-line back0"></i>
+      <i class="ri-arrow-left-line back0 " onClick={()=>navigate('/')}></i>
+
         <b>Welcome back</b>
         <p>welcome back please eneter your details</p>
 
@@ -76,7 +77,7 @@ function Login() {
               <option value="admin">Admin</option>
             </select>
           </div> */}
-        <p className="fpassword" onClick={() => naviagate("/forgotPassword")}>
+        <p className="fpassword" onClick={() => navigate("/forgotPassword")}>
           Forgot Password?
         </p>
         <button className="login" onClick={submit}>
@@ -108,10 +109,11 @@ function Login() {
           </svg>
           <p>Continue with google</p>
         </div>
-        <p style={{ marginTop: "10px" }} onClick={() => naviagate("/Signup")}>
-          Dont Have an Account ? <strong>Signup</strong>
+        <p style={{ marginTop: "10px" }} onClick={() => navigate("/Signup")}>
+          Don't Have an Account ? <strong>Signup</strong>
         </p>
       </form>
+      
       <Img className="image"></Img>
     </section>
   );

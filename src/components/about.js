@@ -18,7 +18,7 @@ export default function About() {
       </Fade >
   
         <div className="top_mid">
-   Providing Online Platform to students To overcome from there Mental Helth
+   Providing Online Platform to students To overcome from their Mental health
  
         </div>
         <Fade left opposite> 
@@ -37,7 +37,7 @@ export default function About() {
  
     
 
-  <p> <Zoom  >Online support  </Zoom> <br></br>
+  <p> Online support <br></br>
   <b>start value has mixed support, consider using flex-start instead</b></p>
 </div>
 <div className="box">

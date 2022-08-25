@@ -18,7 +18,7 @@ export default function Home() {
           DON'T<b>WORRY</b>HEURISTIC TAKE CARE
           </Fade >
         </span>
-        <p> help students overcome fro there Mental situations</p>
+        <p> Help students overcome from their Mental situations</p>
         <h2>
         <Flip left>
       

@@ -17,7 +17,7 @@ function Footer() {
           <div className="Logo_footer">
             HEURISTIC
           </div>
-          <p>One stop sollution for your problems</p>
+          <p>One stop solution for your problems</p>
         </div>
        
         <div className="media_container">

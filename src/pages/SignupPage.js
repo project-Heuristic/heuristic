@@ -379,7 +379,7 @@ function Login() {
               <p>Continue with google</p>
             </div>
             <p style={{ marginTop: "10px" }} onClick={() => navigate("/Login")}>
-              Alredy Have an Account ? <strong>Login</strong>
+              Already Have an Account ? <strong>Login</strong>
             </p>
           </>
         ) : (
