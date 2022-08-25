@@ -47,7 +47,9 @@ function Login() {
     if (userType === "teacher") {
       setError("");
       try {
+
         console.log("hiii");
+        console.log(value)
         const data = await signUp(Email, Password, userImages);
         console.log("data", data);
         localStorage.setItem("UserData", JSON.stringify(data));

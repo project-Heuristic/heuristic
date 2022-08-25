@@ -24,7 +24,7 @@ export function UserAuthContextProvider({ children }) {
   const signUp=async (email, password,additionData)=> {
     const user = await createUserWithEmailAndPassword(auth, email, password);
    const dataRef= await createUserProfileDocument(user.user,additionData) ;
-  
+  console.log(dataRef);
      return dataRef;
   }
 
