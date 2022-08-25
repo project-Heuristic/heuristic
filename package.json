@@ -10,6 +10,7 @@
     "@iconscout/react-unicons": "^1.1.6",
     "@material-ui/core": "^4.12.4",
     "@material-ui/lab": "^4.0.0-alpha.61",
+    "@mui/lab": "^5.0.0-alpha.96",
     "@mui/material": "^5.10.2",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
