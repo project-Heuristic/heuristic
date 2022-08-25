@@ -6,7 +6,7 @@ import FileBAse from "react-file-base64";
 import { useUserAuth } from "../context/userAuthContext";
 import { useForm } from "react-hook-form";
 import { createUserProfileDocument } from "../firebase/firebase-utils";
-
+import { signOut } from "firebase/auth";
 
 function Login() {
   const navigate = useNavigate();
@@ -16,7 +16,8 @@ function Login() {
   const [error, setError] = useState("");
   const [aadharImg, setAadharImg] = useState("");
   const [idImg, setIdImg] = useState("");
-  const { signUp, googleSignIn, userData} = useUserAuth();
+  const [profileImg,setProfileImg]=useState("");
+  const { signUp, googleSignIn, userData } = useUserAuth();
 
   // console.log(user);
   const {
@@ -25,25 +26,41 @@ function Login() {
     handleSubmit,
     formState: { errors, isValid, isDirty },
   } = useForm({ mode: "all" });
- 
-  const submitForm = async (value) => {
-    const userImages ={...value,aadharImg,idImg}
 
-  
+  const submitForm = async (value) => {
+    let userImages = { ...value, aadharImg, idImg,profileImg };
+// console.log(value);
     const { Email, Password, userType } = value;
     // const data = JSON.stringify(value, null, 2);
-    
+
     if (userType === "teacher") {
       setError("");
-    try {
-      console.log('hiii');
-     const data= await signUp(Email, Password,userImages);
-      console.log("data", data); 
-      console.log(Email, Password);
-      navigate('/teacher', {state:data})
-    } catch (err) {
-      setError(err.message);
+      try {
+        console.log("hiii");
+        const data = await signUp(Email, Password, userImages);
+        console.log("data", data);
+        localStorage.setItem("UserData", JSON.stringify(data));
+        console.log(Email, Password);
+        navigate("/teacher/dashboard", { state: data });
+      } catch (err) {
+        setError(err.message);
+      }
     }
+    if (userType === "student") {
+      setError("");
+      try {
+        console.log("hiii");
+        const newStudent=true;
+        userImages ={...userImages,newStudent}
+        const data = await signUp(Email, Password, userImages);
+        console.log("data", data);
+        localStorage.setItem("UserData", JSON.stringify(data));
+        console.log(Email, Password);
+       await signOut();
+        // navigate("/teacher/dashboard", { state: data });
+      } catch (err) {
+        setError(err.message);
+      }
     }
   };
   const googleSignInStart = async (e) => {
@@ -175,9 +192,8 @@ function Login() {
             <div className="inputFields">
               <label>Confirm Password</label>
               <input
-                type="ConfirmPassword"
+                type="password"
                 onChange={(e) => setConfirmPass(e.target.value)}
-              
               ></input>
               {}
               {errors.Password?.type === "required" && (
@@ -287,16 +303,31 @@ function Login() {
         )}
         {formStep === 3 ? (
           <>
-            <FileBAse
-              type="files"
-              multiple={false}
-              onDone={({ base64 }) => setAadharImg({ selectFile: base64 })}
-            ></FileBAse>
-            <FileBAse
-              type="files"
-              multiple={false}
-              onDone={({ base64 }) => setIdImg({ selectFile: base64 })}
-            ></FileBAse>
+            <label>Select Profile Picture</label>
+            <div className="filesImg">
+              <FileBAse
+                type="files"
+                multiple={false}
+                onDone={({ base64 }) => setProfileImg({ selectFile: base64 })}
+
+             ></FileBAse>{" "}
+            </div>
+            <label>Select Institution ID</label>
+            <div className="filesImg">
+              <FileBAse
+                type="files"
+                multiple={false}
+                onDone={({ base64 }) => setIdImg({ selectFile: base64 })}
+              ></FileBAse>{" "}
+            </div>
+            <label>Select Aadhar Id</label>
+            <div className="filesImg">
+              <FileBAse
+                type="files"
+                multiple={false}
+                onDone={({ base64 }) => setAadharImg({ selectFile: base64 })}
+              ></FileBAse>{" "}
+            </div>
           </>
         ) : (
           ""
@@ -347,10 +378,7 @@ function Login() {
               </svg>
               <p>Continue with google</p>
             </div>
-            <p
-              style={{ marginTop: "10px" }}
-              onClick={() => navigate("/Login")}
-            >
+            <p style={{ marginTop: "10px" }} onClick={() => navigate("/Login")}>
               Alredy Have an Account ? <strong>Login</strong>
             </p>
           </>

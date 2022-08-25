@@ -1,18 +1,21 @@
 /* eslint-disable no-unused-expressions */
-import React, { useState ,useEffect} from "react";
-import { Link } from "react-router-dom";
+import React, { useState ,useEffect, useContext} from "react";
 import { useNavigate } from "react-router-dom";
-import { IconContext } from "react-icons";
 import "./style/header.scss";
-import * as FaIcons from "react-icons/fa";
-import * as AiIcons from "react-icons/ai";
 import { SidebarData } from "./SidebarData";
 import "./style/Navbar.css";
+import Bounce from 'react-reveal/Bounce';
+import Fade from 'react-reveal/Fade';
 import {useUserAuth} from "../context/userAuthContext.js"
+import { TeacherContext } from "../context/teacherContext";
 
 const Header = () => {
   const {user,signOut}=useUserAuth();
-  // console.log(user.uid);
+  
+  const teacher =useContext(TeacherContext);
+  console.log('👻👻👻');
+  console.log(teacher);
+  console.log('❤️❤️❤️');
   const [sidebar, setSidebar] = useState(false);
 const navigate =useNavigate();
   const showSidebar = () => setSidebar(!sidebar);
@@ -32,18 +35,26 @@ const navigate =useNavigate();
   return (
     <div className={`navigation ${stickyClass}`}>
       <i class="ri-menu-2-line" onClick={()=>showSidebar()} ></i>
+      <Bounce left>
+
       <b>
+
         HEURISTIC
 
       </b>
+      </Bounce>
+
       <ul className="header_nav">
 
       {
         SidebarData.map((data)=>(
-          <li>{data.title}</li>
+          <Fade>
+          <li><a href={`#${data.title}`}>{data.title}</a></li>
+          </Fade>
           ))
         }
         </ul>
+        <Bounce right>
         {
           user?.uid?( <button  onClick={signOut}>
           Sign Out
@@ -51,6 +62,7 @@ const navigate =useNavigate();
           Login
         </button>)
         }
+            </Bounce>
        
         {
          sidebar?

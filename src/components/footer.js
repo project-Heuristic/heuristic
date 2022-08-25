@@ -19,23 +19,7 @@ function Footer() {
           </div>
           <p>One stop sollution for your problems</p>
         </div>
-        <div className="sectionS">
-          <b>Services</b>
-          <span>about</span>
-          <span>how it works?</span>
-          <span>benifits</span>
-          <span>review</span>
-        </div>
-
-        <div className="sectionS">
-          <b>About</b>
-          <span>about us</span>
-          <span>term</span>
-          <span>Privacy Policy</span>
-          <span>carrers</span>
-         
-        </div>
-
+       
         <div className="media_container">
         
           <div className="social_media">

@@ -11,12 +11,10 @@
 }
 
 .AppGlass {
-  display: grid;
   height: 100%;
   width:100%;
   background: var(--glass);
 
-  grid-template-columns: 14.5rem 1fr ;
   /* overflow: hidden; */
 }
 

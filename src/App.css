@@ -13,3 +13,30 @@
   --font-2: "Poppins";
   --font-3: "Montserrat";
 }
+.css-1aquho2-MuiTabs-indicator{
+  margin: 0;
+  background-color: #385748 !important;
+}
+.css-1aquho2-MuiTabs-indicator::after{
+  background-color: #385748 !important;
+  padding: 0.2rem;
+}
+.react-tabs__tab--selected:active{
+  color: #385748 !important;
+  border: none !important;
+ 
+  border-bottom:5px solid red !important;
+}
+.css-13xfq8m-MuiTabPanel-root{
+  padding: 0.5rem !important;
+  display: flex;
+  margin: 0 !important;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.css-heg063-MuiTabs-flexContainer{
+  margin-top: 2rem;
+}
+

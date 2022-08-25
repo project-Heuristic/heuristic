@@ -12,20 +12,19 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase/firebase";
 import { createUserProfileDocument } from "../firebase/firebase-utils";
+import {  useNavigate } from "react-router-dom";
 const userAuthContext = createContext();
-
+const teacherContext=createContext();
 
 
 
 export function UserAuthContextProvider({ children }) {
+  const navigate=useNavigate();
   const [user, setUser] = useState("");
-
   const signUp=async (email, password,additionData)=> {
     const user = await createUserWithEmailAndPassword(auth, email, password);
    const dataRef= await createUserProfileDocument(user.user,additionData) ;
-  //  const docSnap = await getDoc(dataRef);
-  //  const data=docSnap?.data()
-  // console.log(dataRef);
+  
      return dataRef;
   }
 
@@ -38,6 +37,7 @@ export function UserAuthContextProvider({ children }) {
   }
   function signOut() {
     console.log('signOut')
+    navigate('/');
    return auth.signOut();
   }
 
@@ -59,6 +59,10 @@ export function UserAuthContextProvider({ children }) {
     </userAuthContext.Provider>
   );
 }
+
+
+
+
 export function useUserAuth() {
   return useContext(userAuthContext);
 }

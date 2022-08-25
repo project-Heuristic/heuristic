@@ -27,11 +27,11 @@ export const createUserProfileDocument = async (UserAuth, additionalData) => {
   if (!snapShot.exists) {
     const { displayName, email,photoURL } = UserAuth;
     const createdAt = new Date();
-const {Name}=additionalData;
+const {Name,profileImg}=additionalData;
 const userData={
   displayName:Name,
   email,
-  photoURL,
+  photoURL:profileImg,
   createdAt,
   ...additionalData,
 }
@@ -50,8 +50,22 @@ const userData={
 
 
 
-
-
+// export  function Providers() {
+ 
+//      const getUsers = ()=>{
+//     db.collection("user").get().then((querySnapshot) => {
+         
+//         // Loop through the data and store
+//         // it in array to display
+//         querySnapshot.forEach(element => {
+//             var data = element.data();
+//             // setInfo(arr => [...arr , data]);
+//               console.log(data)
+//         });
+//     })
+// }
+//   return getUsers;
+// }
 
 
 

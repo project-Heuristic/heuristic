@@ -1,0 +1,32 @@
+
+
+.student {
+  color: var(--black);
+  background: var(--color-one);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+
+}
+
+.AppGlass {
+  display: grid;
+  height: 100%;
+  width:100%;
+  background: var(--glass);
+
+  grid-template-columns: 14.5rem 1fr ;
+  /* overflow: hidden; */
+}
+
+@media screen and (max-width: 1200px) {
+
+}
+
+@media screen and (max-width: 768px) {
+  .AppGlass{
+    grid-template-columns: 1fr;
+  } 
+} 

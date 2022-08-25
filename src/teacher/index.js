@@ -1,27 +1,28 @@
-import React from 'react'
-import './student.css'
-import TeacherDash from './components/MainDash/MainDash';
-import RightSide from './components/RigtSide/RightSide';
+import React, { useContext, useEffect, useState } from 'react'
+
 import Sidebar from './components/Sidebar';
-import { useUserAuth } from '../context/userAuthContext';
-import { useHistory, useParams ,useLocation} from 'react-router-dom'
-function Students() {
-  const {state} = useLocation()
-  console.log('datdddddddddddddddddddda',state);
-  const {user,signOut}=useUserAuth();
-  console.log(user);
-  console.log("hii")
-  console.log('dasdas')
+import { Outlet} from 'react-router-dom';
+import "./teachers.css"
+import  {TeacherContext}  from '../context/teacherContext.js';
+function Teacher() {
+  const userData=localStorage.getItem('UserData');
+  const data=JSON.parse(userData);
+console.log(data+'student🚀🚀🚀');
+  console.log('joo')
+  
   return (
     <div className="student">
       <div className="AppGlass">
+  
         <Sidebar/>
-        <TeacherDash teacher={state}/>
-        
-        {/* <RightSide/> */}
+        <TeacherContext.Provider value={data}>
+               
+        <Outlet></Outlet>
+        </TeacherContext.Provider>
+       {/* <RightSide></RightSide> */}
       </div>
     </div>
   )
 }
 
-export default Students
+export default Teacher

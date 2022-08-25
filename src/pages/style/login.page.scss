@@ -16,7 +16,9 @@ section {
     width: 100%;
     margin: auto;
     height: 100%;
-  }
+  
+   }
+
   .credentials {
     width: 50%;
     // background-color: red;
@@ -295,4 +297,19 @@ margin: 1rem 0 !important;
      }
 
  }
+}
+label{
+  // background-color: red;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.filesImg{
+  height: 6rem;
+  width: 55%;
+  border: 2px  dashed var(--color-dark);
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+// background-color: red;
 }

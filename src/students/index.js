@@ -1,19 +1,28 @@
-import React from 'react'
-import './student.css'
-import MainDash from './components/MainDash/MainDash';
-import RightSide from './components/RigtSide/RightSide';
+import React, { useContext, useEffect, useState } from 'react'
+
 import Sidebar from './components/Sidebar';
-function Students() {
+import { Outlet} from 'react-router-dom';
+import "./students.css"
+import  {TeacherContext}  from '../context/teacherContext.js';
+function Teacher() {
+  const userData=localStorage.getItem('UserData');
+  const data=JSON.parse(userData);
+console.log(data);
+  console.log('joo'+'student🚀🚀🚀')
+  
   return (
     <div className="student">
       <div className="AppGlass">
+  
         <Sidebar/>
-        <MainDash/>
-        
-        {/* <RightSide/> */}
+        <TeacherContext.Provider value={data}>
+               
+        <Outlet></Outlet>
+        </TeacherContext.Provider>
+       {/* <RightSide></RightSide> */}
       </div>
     </div>
   )
 }
 
-export default Students
+export default Teacher
