@@ -9,6 +9,8 @@ import "./dashboard.scss";
 import Backdrop from "@mui/material/Backdrop";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import { createUserExam } from "../../../sevices/service.js";
+import userDataService from "../../../sevices/service.js";
 
 import Box from "@mui/material/Box";
 const style = {
@@ -23,7 +25,25 @@ const style = {
   boxShadow: 24,
   p: 0,
 };
-const style2={
+const style3={
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  bgcolor: "background.paper",
+  border: "2px solid transparent",
+  boxShadow: 24,
+  width: "30%",
+  borderRadius: "1rem",
+  display: "flex",
+alignItem:"center",
+justifyContent:"center",
+flexDirection:"column",
+gap:"1rem",
+  height: "50%",
+  p: 0,
+}
+const style2 = {
   position: "absolute",
   top: "50%",
   left: "50%",
@@ -33,16 +53,37 @@ const style2={
   bgcolor: "none",
   borderRadius: "50px !important",
   border: "2px solid transparent",
-  
+
   boxShadow: 24,
   p: 0,
-}
+};
 
 export default function Dashboard() {
-  const teacher = useContext(TeacherContext);
+  const student = useContext(TeacherContext);
+  // userDataService
+
+  console.log("////////");
+  console.log(student);
+  const sendData = async (array, skills) => {
+    console.log("getting data");
+    console.log(array, skills);
+    const examData = { array, skills, studentId: student.Id };
+    try {
+      console.log("Exam🙏 data");
+      student.examData = examData;
+      console.log(student);
+      const data = await userDataService.updateUser(student.Id.student);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  console.log(student);
+  console.log("⚡⚡⚡⚡⚡");
   const { user } = useUserAuth();
-  console.log("👍👍👍👻👻👻" + teacher.group);
-  // console.log(teacher);
+  console.log("👍👍👍👻👻👻" + student.group);
+  // console.log(student);
 
   const navigate = useNavigate();
   const [students, setNewStudets] = useState(true);
@@ -298,13 +339,13 @@ export default function Dashboard() {
 
   // Helper Functions
   const checkStudent = () => {
-    console.log(+teacher.group);
-    let age = +teacher.group;
+    console.log(+student.group);
+    let age = +student.group;
 
     if (age < 3) {
       // setExam(false)
       console.log("age less than 3");
-      return true;
+      return age;
     }
   };
   //  checkStudent();
@@ -312,11 +353,10 @@ export default function Dashboard() {
 
   //array wanna fetch the questions to the database
   const [array, setArray] = useState([]);
-  const [skillsImprove,setSkillImprove] = useState([]);
+  const [skillsImprove, setSkillImprove] = useState([]);
 
   // console.log(array);
   const optionClicked = (isCorrect, value) => {
-    
     console.log(value);
     setArray([value, ...array]);
 
@@ -348,29 +388,26 @@ export default function Dashboard() {
   console.log(skillsImprove);
   return (
     <>
-    
       {end ? (
         <Backdrop
           sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-          open={open}
         >
           <Modal
             open={open}
-            onClose={handleClose}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
             <Box sx={style}>
               <>
-                {!assessmentTaken ? (
+                {!assessmentTaken  ? (
                   <div className="assessment">
-                   
                     {showResults ? (
                       /* 4. Final Results */
                       <div className="final-results">
-                        <b>Step 1 <br/>
-                        complete
-                           </b> 
+                        <b>
+                          Step 1 <br />
+                          complete
+                        </b>
                         <iframe src="https://embed.lottiefiles.com/animation/50465"></iframe>
                         <h4>Choose Skills You want to improve </h4>
                         <button
@@ -400,7 +437,8 @@ export default function Dashboard() {
                         </h3>
 
                         {/* List of possible answers  */}
-                        <ul>
+                        {
+                          checkStudent() === '4' ? <ul>
                           {questions[currentQuestion].options.map((option) => {
                             return (
                               <li
@@ -415,7 +453,25 @@ export default function Dashboard() {
                               </li>
                             );
                           })}
+                        </ul>:
+                        <ul>
+                           {questions[currentQuestion].options.map((option) => {
+                            return (
+                              <li
+                                key={option.id}
+                                value={option.id}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  optionClicked(option.isCorrect, option);
+                                }}
+                              >
+                                {option.text}
+                              </li>
+                            );
+                          })}
                         </ul>
+                        }
+                        
                       </div>
                     )}
                   </div>
@@ -427,17 +483,18 @@ export default function Dashboard() {
                       className="selector"
                       options={options}
                       displayValue="skill"
-                     
-                      onSelect={(e) => {setSkillImprove(e)}}
+                      onSelect={(e) => {
+                        setSkillImprove(e);
+                      }}
                     ></Multiselect>
                     <b className="ottt">Anything More You want to share</b>
                     <textarea></textarea>
                     <button
-                
                       onClick={() => {
                         setEnd(false);
                         // setAssessmentTaken(true);
                         setOpen2(true);
+                        sendData(array, skillsImprove);
                       }}
                     >
                       Finish
@@ -450,126 +507,135 @@ export default function Dashboard() {
           </Modal>
         </Backdrop>
       ) : (
-        <div className="MainDash">
-          <div className="main">
-            <b>Students Panel</b>
+        <>
+          <Backdrop
+            sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            open={open}
+            onClick={handleClose}
+            
+          >
+            <Box sx={style3} className="done_loti">
+            <iframe src="https://embed.lottiefiles.com/animation/80036" ></iframe>
+            <button>Explore Your Content</button>
+            </Box>
+          </Backdrop>
+          <div className="MainDash">
+            <div className="main">
+              <b>Students Panel</b>
 
-            <p>Welcome {teacher.Name}</p>
+              <p>Welcome {student.Name}</p>
 
-            <div
-              className="profile"
-              style={{ cursor: "pointer" }}
-              onClick={() => navigate("/students/profile")}
-            >
-              <i class="ri-notification-2-fill"></i>
-              <p>{teacher.Name}</p>
-              <img src={teacher.profileImg.selectFile} alt="" />
-            </div>
-            <Cards></Cards>
-            <h4>Video Recommendation </h4>
-            <div className="videos">
-              <div className="video">
-                <iframe
-                  width="560"
-                  height="315"
-                  src="https://www.youtube.com/embed/NY1u3p0Hw7A"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                ></iframe>
+              <div
+                className="profile"
+                style={{ cursor: "pointer" }}
+                onClick={() => navigate("/students/profile")}
+              >
+                <i class="ri-notification-2-fill"></i>
+                <p>{student.Name}</p>
+                <img src={student.profileImg.selectFile} alt="" />
               </div>
-              <div className="video">
-                <iframe
-                  width="560"
-                  height="315"
-                  src="https://www.youtube.com/embed/NY1u3p0Hw7A"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                ></iframe>
-              </div>
+              <Cards></Cards>
+              <h4>Video Recommendation </h4>
+              <div className="videos">
+                <div className="video">
+                  <iframe
+                    width="560"
+                    height="315"
+                    src="https://www.youtube.com/embed/NY1u3p0Hw7A"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+                <div className="video">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/vlwmfiCb-vc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
 
-              <div className="video">
-                <iframe
-                  width="560"
-                  height="315"
-                  src="https://www.youtube.com/embed/NY1u3p0Hw7A"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                ></iframe>
+                <div className="video">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/TQ33fPD7ntA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                
+                <div className="video">
+
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/6s3E9xp_qdE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div className="video">
+
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/c37dudFXmzA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div className="video">
+
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/-AtnrOYflhc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
               </div>
-            </div>
-            <h4>Recommended Books</h4>
-            <div className="Books">
-              <div className="book">
-                <img
-                  src="https://images-na.ssl-images-amazon.com/images/I/81wgcld4wxL.jpg"
-                  alt="bookName"
-                ></img>
-                <strong>Atomic Habits</strong>
-                <p>Lorem ipsum, dolor sit Earum, obcaecati?</p>
-                <a href="https://article.com" target="_blank">
-                  Book Link
-                </a>
+              <h4>Recommended Books</h4>
+              <div className="Books">
+                <div className="book">
+                  <img
+                    src="https://images-na.ssl-images-amazon.com/images/I/81wgcld4wxL.jpg"
+                    alt="bookName"
+                  ></img>
+                  <strong>Atomic Habits</strong>
+                  <p>Lorem ipsum, dolor sit Earum, obcaecati?</p>
+                  <a href="https://article.com" target="_blank">
+                    Book Link
+                  </a>
+                </div>
+                <div className="book">
+                  <img
+                    src="https://rukminim1.flixcart.com/image/416/416/kq9ta4w0/book/p/o/k/tiny-habits-the-small-changes-that-change-everything-paperback-original-imag4bcrqajg9vmc.jpeg?q=70"
+                    alt="bookName"
+                  ></img>
+                  <strong>Tiny Habits</strong>
+                  <p>Lorem ipsum, dolor sit Earum, obcaecati?</p>
+                  <a href="https://article.com" target="_blank">
+                    Book Link
+                  </a>
+                </div>
+                <div className="book">
+                  <img
+                    src="https://kbimages1-a.akamaihd.net/351dd875-2dce-409c-a7f0-459379218af0/1200/1200/False/how-to-talk-to-anyone-at-work-72-little-tricks-for-big-success-communicating-on-the-job.jpg"
+                    alt="bookName"
+                  ></img>
+                  <strong>Communication skills </strong>
+                  <p>Lorem ipsum, dolor sit Earum, obcaecati?</p>
+                  <a href="https://article.com" target="_blank">
+                    Book Link
+                  </a>
+                </div>
+                <div className="book">
+                  <img
+                    src="https://images-na.ssl-images-amazon.com/images/I/81wgcld4wxL.jpg"
+                    alt="bookName"
+                  ></img>
+                  <strong>Atomic Habits</strong>
+                  <p>Lorem ipsum, dolor sit Earum, obcaecati?</p>
+                  <a href="https://article.com" target="_blank">
+                    Book Link
+                  </a>
+                </div>
               </div>
-              <div className="book">
-                <img
-                  src="https://images-na.ssl-images-amazon.com/images/I/81wgcld4wxL.jpg"
-                  alt="bookName"
-                ></img>
-                <strong>Atomic Habits</strong>
-                <p>Lorem ipsum, dolor sit Earum, obcaecati?</p>
-                <a href="https://article.com" target="_blank">
-                  Book Link
-                </a>
+              <h4>Others </h4>
+              <p>Some extra Activities</p>
+              <div className="club">
+                <div className="club-img">
+                  <img
+                    src="https://media.istockphoto.com/vectors/icon-of-paper-plane-white-plane-on-a-blue-background-vector-id524018928?k=20&m=524018928&s=612x612&w=0&h=473R1ru_6BHA8mW_dlhaAN0_NJhkFV6r6iHUZ1B50jA="
+                    alt="club"
+                  ></img>
+                </div>
+                <h5>Speaking Club</h5>
+                <p>Lorem ipsum dolor sit amet lobhhj</p>
+                <a href="https://i.pravatar.cc">Join Now</a>
               </div>
-              <div className="book">
-                <img
-                  src="https://images-na.ssl-images-amazon.com/images/I/81wgcld4wxL.jpg"
-                  alt="bookName"
-                ></img>
-                <strong>Atomic Habits</strong>
-                <p>Lorem ipsum, dolor sit Earum, obcaecati?</p>
-                <a href="https://article.com" target="_blank">
-                  Book Link
-                </a>
-              </div>
-              <div className="book">
-                <img
-                  src="https://images-na.ssl-images-amazon.com/images/I/81wgcld4wxL.jpg"
-                  alt="bookName"
-                ></img>
-                <strong>Atomic Habits</strong>
-                <p>Lorem ipsum, dolor sit Earum, obcaecati?</p>
-                <a href="https://article.com" target="_blank">
-                  Book Link
-                </a>
-              </div>
-            </div>
-            <h4>Others </h4>
-            <p>Some extra Activities</p>
-            <div className="club">
-              <div className="club-img">
-                <img
-                  src="https://media.istockphoto.com/vectors/icon-of-paper-plane-white-plane-on-a-blue-background-vector-id524018928?k=20&m=524018928&s=612x612&w=0&h=473R1ru_6BHA8mW_dlhaAN0_NJhkFV6r6iHUZ1B50jA="
-                  alt="club"
-                ></img>
-              </div>
-              <h5>Speaking Club</h5>
-              <p>Lorem ipsum dolor sit amet lobhhj</p>
-              <a href="https://i.pravatar.cc">Join Now</a>
             </div>
           </div>
-        </div>
+        </>
       )}
     </>
 
     //     <>
-    //       {students && !assessmentTaken && +teacher.group >= 3 ? (
+    //       {students && !assessmentTaken && +student.group >= 3 ? (
     //         <>
     //           {end &&!assessmentTaken ? (
     //             <div className="assessment">
@@ -645,7 +711,7 @@ export default function Dashboard() {
     //           <div className="main">
     //             <b>Students Panel</b>
 
-    //             <p>Welcome {teacher.Name}</p>
+    //             <p>Welcome {student.Name}</p>
 
     //             <div
     //               className="profile"
@@ -653,8 +719,8 @@ export default function Dashboard() {
     //               onClick={() => navigate("/students/profile")}
     //             >
     //               <i class="ri-notification-2-fill"></i>
-    //               <p>{teacher.Name}</p>
-    //               <img src={teacher.profileImg.selectFile} alt="" />
+    //               <p>{student.Name}</p>
+    //               <img src={student.profileImg.selectFile} alt="" />
     //             </div>
     //             <Cards></Cards>
     //             <h4>Video Recommendation </h4>

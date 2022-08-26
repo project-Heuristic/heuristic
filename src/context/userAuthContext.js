@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { createContext } from "react";
-import { doc, getDoc} from "firebase/firestore"; 
+import { db } from "../firebase/firebase-utils";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -10,11 +10,14 @@ import {
   signInWithPopup,
   getAdditionalUserInfo,
 } from "firebase/auth";
-import { auth } from "../firebase/firebase";
+import { auth } from "../firebase/firebase-utils";
 import { createUserProfileDocument } from "../firebase/firebase-utils";
 import {  useNavigate } from "react-router-dom";
 const userAuthContext = createContext();
 const teacherContext=createContext();
+
+
+
 
 
 

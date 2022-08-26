@@ -30,6 +30,7 @@ import History from "./teacher/components/History/History.js";
 import Admin from "./Admin/index.js";
 import AdminDashboard from "./Admin/components/Dahboard/dashboard.jsx";
 import AdminProfile from "./Admin/components/Profile/Profile.js";
+import VideoCall from "./students/components/videocall";
 
 function App() {
   return (
@@ -67,6 +68,7 @@ function App() {
               element={<AppointMents></AppointMents>}
             ></Route>
           </Route>
+          <Route path="/call" element={<VideoCall></VideoCall>}></Route>
         </Routes>
       </UserAuthContextProvider>
     </div>

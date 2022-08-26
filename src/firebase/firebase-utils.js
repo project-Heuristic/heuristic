@@ -1,21 +1,29 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
-
-
+import { getAuth } from "firebase/auth";
+import { collection, getFirestore } from 'firebase/firestore';
 const firebaseConfig = {
   apiKey: "AIzaSyBQ2McJpVLYkCRjJxVAhpM8bdoOniONqCo",
   authDomain: "heuristics-417f2.firebaseapp.com",
+  databaseURL: "https://heuristics-417f2-default-rtdb.firebaseio.com",
   projectId: "heuristics-417f2",
   storageBucket: "heuristics-417f2.appspot.com",
   messagingSenderId: "942610132755",
   appId: "1:942610132755:web:f8660c612fb461a01cb4e6",
-  measurementId: "G-Q81WJP92V3",
+  measurementId: "G-Q81WJP92V3"
 };
 
 
-firebase.initializeApp(firebaseConfig);
+
+const app=firebase.initializeApp(firebaseConfig);
 export const firestore = firebase.firestore();
+
+
+export const db=getFirestore(app);
+export const auth =getAuth(app);
+export default app;
+
 
 
 export const createUserProfileDocument = async (UserAuth, additionalData) => {
@@ -23,12 +31,15 @@ export const createUserProfileDocument = async (UserAuth, additionalData) => {
   if (!UserAuth) return;
 
   const userRef = firestore.doc(`users/${UserAuth.uid}`);
+ 
+  
   const snapShot = await userRef.get();
   if (!snapShot.exists) {
-    const { displayName, email,photoURL } = UserAuth;
+    const { displayName, uid,email,photoURL } = UserAuth;
     const createdAt = new Date();
 const {Name,profileImg}=additionalData;
 const userData={
+  Id:uid,
   displayName:Name,
   email,
   photoURL:profileImg,

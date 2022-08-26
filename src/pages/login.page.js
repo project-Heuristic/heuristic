@@ -4,6 +4,8 @@ import { ReactComponent as Img } from "../assets/credential.svg";
 import { useNavigate } from "react-router-dom";
 import { useUserAuth } from "../context/userAuthContext";
 
+import { ThreeCircles } from 'react-loader-spinner'
+import Backdrop from '@mui/material/Backdrop';
 import Alert from "@mui/material/Alert";
 
 function Login() {
@@ -13,23 +15,36 @@ function Login() {
   const [error, setError] = useState("");
   const [userType, setUserType] = useState("");
   const { logIn, googleSignIn } = useUserAuth();
+  const [backdrop,setBackDrop]=useState(false);
   const submit = async (e) => {
     e.preventDefault();
     setError("");
     console.log(userType);
-    // try {
-    //   await logIn(email, password);
+    try {
+      
+      setBackDrop(true);
+      await logIn(email, password).then(()=>{
+        console.log('sucessfull');
+        setBackDrop(false);
+      })
+      
+     
     
-    // } catch (err) {
-    //   setError(err.message);
-    //   console.log(error);
-    // }
+    } catch (err) {
+      setBackDrop(false);
+      setError(err.message);
+      console.log(error);
+    }
   };
   const googleSignInStart = async (e) => {
     e.preventDefault();
     try {
+      
+      setBackDrop(true);
       await googleSignIn();
-      navigate("/students");
+      navigate("/students/dashboard");
+      
+      setBackDrop(false);
     } catch (err) {
       setError(err.message);
     }
@@ -37,6 +52,26 @@ function Login() {
 
   return (
     <section>
+          <Backdrop
+
+sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+open={backdrop}
+>
+
+  <ThreeCircles
+
+height="100"
+width="100"
+color="#4fa94d"
+wrapperStyle={{}}
+wrapperClass=""
+visible={true}
+ariaLabel="three-circles-rotating"
+outerCircleColor=""
+innerCircleColor=""
+middleCircleColor=""
+></ThreeCircles>
+</Backdrop>
       {error ?   <Alert severity="error" className="alert">
             {error}
           </Alert>   : ""}
@@ -64,7 +99,7 @@ function Login() {
             }}
           ></input>
         </div>
-          <div className="inputFields">
+          {/* <div className="inputFields">
             <label>Login as</label>
             <select
               name="userType"
@@ -75,9 +110,8 @@ function Login() {
             >
               <option value="student">Student</option>
               <option value="teacher">Teacher</option>
-              <option value="admin">Admin</option>
             </select>
-          </div>
+          </div> */}
         <p className="fpassword" onClick={() => navigate("/forgotPassword")}>
           Forgot Password?
         </p>

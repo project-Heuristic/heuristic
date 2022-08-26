@@ -1,0 +1,38 @@
+.container {
+	display: grid;
+	grid-template-columns: 7fr 3fr;
+}
+
+.myId {
+	margin-right: 5rem;
+	border-radius: 5px;
+	
+	padding: 2rem;
+	display: grid;
+	justify-content: center;
+	align-content: center;
+}
+
+.call-button {
+	text-align: center;
+	margin-top: 2rem;
+}
+
+.video-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	justify-content: center;
+	align-content: center;
+	margin-top: 10rem;
+	margin-left: 10rem;
+}
+
+.caller {
+	text-align: center;
+	color: #fff;
+}
+
+body {
+  background:linear-gradient(257.16deg, rgba(255, 255, 255, 0) -4.27%, rgba(243, 243, 255, 0.518326) -4.27%, rgba(223, 223, 255, 0.00762195) -4.26%, #FFFFFF -4.25%, #D7FFDB 137.94%);
+
+}

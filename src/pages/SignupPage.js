@@ -7,13 +7,15 @@ import { useUserAuth } from "../context/userAuthContext";
 import { useForm } from "react-hook-form";
 import { createUserProfileDocument } from "../firebase/firebase-utils";
 import { signOut } from "firebase/auth";
+import { ThreeCircles } from 'react-loader-spinner'
 
+import Backdrop from '@mui/material/Backdrop';
 function Login() {
   const navigate = useNavigate();
 
   
   
-  
+  const [backdrop,setBackDrop]=useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
@@ -47,13 +49,10 @@ function Login() {
     if (userType === "teacher") {
       setError("");
       try {
-
-        console.log("hiii");
-        console.log(value)
+        setBackDrop(true);
         const data = await signUp(Email, Password, userImages);
-        console.log("data", data);
         localStorage.setItem("UserData", JSON.stringify(data));
-        console.log(Email, Password);
+        setBackDrop(false);
         navigate("/teacher/dashboard", { state: data });
       } catch (err) {
         setError(err.message);
@@ -62,13 +61,13 @@ function Login() {
     if (userType === "student") {
       setError("");
       try {
-        console.log("hiii");
+        setBackDrop(true);
         const newStudent=true;
         userImages ={...userImages,newStudent}
         const data = await signUp(Email, Password, userImages);
-        console.log("data", data);
+      
         localStorage.setItem("UserData", JSON.stringify(data));
-        console.log(Email, Password);
+        setBackDrop(false);
         navigate("/students/dashboard", { state: data });
       //  await signOut();
         // navigate("/teacher/dashboard", { state: data });
@@ -137,6 +136,28 @@ function Login() {
   let maxStep = 4;
   return (
     <section>
+      <Backdrop
+
+  sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+  open={backdrop}
+>
+
+    <ThreeCircles
+
+height="100"
+width="100"
+color="#4fa94d"
+wrapperStyle={{}}
+wrapperClass=""
+visible={true}
+ariaLabel="three-circles-rotating"
+outerCircleColor=""
+innerCircleColor=""
+middleCircleColor=""
+></ThreeCircles>
+</Backdrop>
+  
+
       <form className="credentials" onSubmit={handleSubmit(submitForm)}>
         {formStep < 4 ? (
           <>
@@ -248,7 +269,6 @@ function Login() {
             >
               <option value="student">Student</option>
               <option value="teacher">Teacher</option>
-              <option value="admin">Admin</option>
             </select>
 
 
@@ -309,11 +329,11 @@ function Login() {
               <select      name="group"
               id="group" {...register("group", { required: true })}
              >
-                <option value='1'>(4th-7th)Foundational stage</option>
-                <option value='2'>(8th-10th)Preparatory stage</option>
-                <option value='3'>(11th-12th)Middle stage</option>
-                <option value='3'>(11th-12th)Secondary stage</option>
-                <option value='4'>(11th-12th)College / University</option>
+                <option value='1'>(LKG-UKG)Foundational stage</option>
+                <option value='2'>(Upto-5th)Preparatory stage</option>
+                <option value='3'>(6th-8th)Middle stage</option>
+                <option value='3'>(9th-10th)Secondary stage</option>
+                <option value='4'>(11th-12th and above)College / University</option>
               </select>
               {errors.Name?.type === "group" && (
                 <span style={{ color: "red", fontSize: "0.8rem", margin: "0" }}>

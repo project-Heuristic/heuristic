@@ -125,7 +125,7 @@ export default function Dashboard() {
               <button style={{ background: "#d00000" }}>Cancel</button>
               <button>View</button>
             </div>
-          </div>
+          </div>MOTHERBOARD
         </div>
        
        
