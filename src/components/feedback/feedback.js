@@ -1,49 +1,51 @@
 import React, { useState } from "react";
 import "./feedback.scss";
 import Rating from "@mui/material/Rating";
+import { useNavigate } from "react-router-dom";
 export default function Feedback() {
+  const navigate=useNavigate();
   const questions = [
     {
-      text: " In my study environment, it is most important to me..",
+      text: "  Our solution has given a positive impact on your life.",
       options: [
         {
           id: 0,
-          text: " To help friends and to be in a peaceful environment.  . ",
+          text: " Agree ",
           isCorrect: false,
         },
         {
           id: 1,
-          text: "To feel that my friends admire me and to be free from rigid rules",
+          text: " Disagree ",
           isCorrect: false,
         },
         {
           id: 2,
-          text: "To know exactly what is expected of me and to finish one task before moving to another",
+          text: "Strongly agree",
           isCorrect: false,
         },
         {
           id: 3,
-          text: "To get things done and to see results. ",
+          text: "Strongly Disagree ",
           isCorrect: true,
         },
       ],
     },
     {
-      text: "In my study environment, it is least important to me... ",
+      text: "On the scale of 5 please rate our recommended teachers ",
       options: [
         {
           id: 0,
-          text: "To help friends and to be in a peaceful environment",
+          text: "Number:'1'",
           isCorrect: true,
         },
         {
           id: 1,
-          text: "To feel that my friends admire me and to be free from rigid rules",
+          text: "Number:'2'",
           isCorrect: false,
         },
         {
           id: 2,
-          text: "To know exactly what is expected of me and to finish one task before moving to another. ",
+          text: "Number:'4'",
           isCorrect: false,
         },
         {
@@ -243,7 +245,7 @@ export default function Feedback() {
         <h4>Thanks for Giving Your Valuable Feedback</h4>
         <button
           onClick={() => {
-            setAssessmentTaken(true);
+            navigate('/')
             // setData(...data,array);
           }}
         >

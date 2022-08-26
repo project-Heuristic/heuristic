@@ -425,3 +425,67 @@ transition: all 0.5s ease-in-out;
 .rating{
 font-size: 2rem;
 }
+.slot_book{
+    padding: 1rem 2rem;
+   
+        background-color:white;
+        color: var(--color-dark);
+        border: none;
+        border-radius: 0.3rem;
+        padding: 0.5rem 2rem;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;  
+        transition: all 0.3s ease;  
+    &:hover{
+        background-color: var(--color-three);
+    }
+}
+.session_join{
+    padding: 1rem 2rem;
+   
+        background-color: var(--color-four);
+        color: #fff;
+        border: none;
+        border-radius: 0.3rem;
+        padding:1rem 2rem;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;  
+        transition: all 0.3s ease;  
+   
+}
+.appointment_loti{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+    b{
+        margin: auto;
+        font-size: 1.5rem;
+    }
+    button{
+        background-color: var(--color-four);
+        color: #fff;
+        border: none;
+        border-radius: 0.3rem;
+        padding: 0.5rem 2rem;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer; 
+        margin: 1rem ;   
+    }
+    span{
+padding: 1rem;
+width: 50%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+border: 2px solid var(--color-dark);
+border-radius: 1rem;
+color: var(--color-dark);
+input{
+    border: 0;
+}
+    }
+}

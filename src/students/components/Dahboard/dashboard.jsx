@@ -58,7 +58,26 @@ const style2 = {
   boxShadow: 24,
   p: 0,
 };
+const style5 = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "60%",
+  height: "50%",
+  bgcolor: "white",
+  borderRadius: "5px !important",
+  border: "2px solid transparent",
+  display: "flex",
+  alignItem: "center",
+  justifyContent: "center",
+  flexDirection: "column",
+  gap: "1rem",
+  color: "black",
 
+  boxShadow: 24,
+  p: 0,
+};
 export default function Dashboard() {
   const student = useContext(TeacherContext);
   // userDataService
@@ -96,7 +115,7 @@ export default function Dashboard() {
   const [problemsChoosen, setProblemsChoosen] = useState(false);
 
   const [exam, setExam] = useState(false);
-
+const [appointment, setAppointment] = useState(false);
   const questions = [
     {
       text: " In my study environment, it is most important to me..",
@@ -468,20 +487,28 @@ export default function Dashboard() {
         books:[
             {
                 id:1,
-                bookName:'Name',
-                image:'htttps://i.pravata.cc'
+                bookName:'Stick For Yourself',
+                image:'https://images-na.ssl-images-amazon.com/images/I/51iSg8J-4IL._SX334_BO1,204,203,200_.jpg'
+            },
+           
+            
+            {
+                id:2,
+                bookName:'assertiveness training',
+                image:'https://m.media-amazon.com/images/I/41kevxGjrNL.jpg'
             },
             {
-                id:1,
-                bookName:'Name',
-                image:'htttps://i.pravata.cc'
-            }
-            ,
-            {
-                id:1,
-                bookName:'Name',
-                image:'htttps://i.pravata.cc'
-            }
+              id:1,
+              bookName:'Alpha Assertiveness',
+              image:'https://images-na.ssl-images-amazon.com/images/I/41VHjaPmJqL._SX331_BO1,204,203,200_.jpg'
+          },
+          {
+              id:2,
+              bookName:'Assertiveness Guide For Woman',
+              image:'https://images-na.ssl-images-amazon.com/images/I/418o5Kh817L._SX331_BO1,204,203,200_.jpg'
+          }
+          
+  
         ]
 
     },
@@ -676,6 +703,21 @@ export default function Dashboard() {
               <button>Explore Your Content</button>
             </Box>
           </Backdrop>
+         
+          {/* <Backdrop
+            sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            open={appointment}
+            onClick={setAppointment(false)}
+          >
+            <Box sx={style5} className="appointment_loti">
+        <b>  Schedule An Appointment With Expert</b>
+        <span>Date :<input  type="date"></input></span>
+        <span>Time :<input  type="time"></input></span>
+              <button onClick={()=>setAppointment(false)}>Book Appointment</button>
+            </Box>
+          </Backdrop> */}
+
+
           <div className="MainDash">
             <div className="main">
               <b>Students Panel</b>
@@ -692,6 +734,11 @@ export default function Dashboard() {
                 <img src={student.profileImg.selectFile} alt="" />
               </div>
               <Cards></Cards>
+              <div className="session_join">
+              <h2>Attend A Session</h2> <br></br>
+
+              <button className="slot_book">Book Slot</button>
+              </div>
               <h4>Video Recommendation </h4>
               <div className="videos">
               {
