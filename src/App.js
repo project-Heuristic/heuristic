@@ -6,7 +6,7 @@ import Login from "./pages/login.page";
 import Signup from "./pages/SignupPage.js";
 import ForgotPassword from "./pages/forgotPassword";
 import ResetPassword from "./pages/resetPasword";
-
+import Feedback from "./components/feedback/feedback"
 
 //students////
 import Students from "./students/index";
@@ -68,6 +68,7 @@ function App() {
               element={<AppointMents></AppointMents>}
             ></Route>
           </Route>
+          <Route path="feedback" element={<Feedback></Feedback>}></Route>
           <Route path="/call" element={<VideoCall></VideoCall>}></Route>
         </Routes>
       </UserAuthContextProvider>

@@ -39,10 +39,7 @@ export default function Profile() {
           <b>institution Id :</b>
           <b>{teacher.IdNumber}</b>
         </span>
-        <span>
-          <b>Aadhar Number :</b>
-          <b>{teacher.AadharNumber}</b>
-        </span>
+       {/* <button>Edit</button> */}
        
       </div>
     </div>

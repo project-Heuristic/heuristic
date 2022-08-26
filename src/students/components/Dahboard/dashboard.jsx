@@ -11,6 +11,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { createUserExam } from "../../../sevices/service.js";
 import userDataService from "../../../sevices/service.js";
+import Rating from "@mui/material/Rating";
 
 import Box from "@mui/material/Box";
 const style = {
@@ -25,7 +26,7 @@ const style = {
   boxShadow: 24,
   p: 0,
 };
-const style3={
+const style3 = {
   position: "absolute",
   top: "50%",
   left: "50%",
@@ -36,13 +37,13 @@ const style3={
   width: "30%",
   borderRadius: "1rem",
   display: "flex",
-alignItem:"center",
-justifyContent:"center",
-flexDirection:"column",
-gap:"1rem",
+  alignItem: "center",
+  justifyContent: "center",
+  flexDirection: "column",
+  gap: "1rem",
   height: "50%",
   p: 0,
-}
+};
 const style2 = {
   position: "absolute",
   top: "50%",
@@ -309,6 +310,44 @@ export default function Dashboard() {
       ],
     },
   ];
+  const questions2 = [
+    {
+      text: "Do you hesitate to communicate with strangers",
+      id: 1
+    },
+  
+    {
+      text: "Are u comfortable  to communicate with new/old friends ",
+  
+      id: 2
+    },
+    {
+      text: "Do you give your opinion on a topic in group",
+  
+      id: 3
+  
+    },
+    {
+      text: " Do you take friends opinion in decision making ",
+      id: 4
+    },
+    {
+      text: "Do you  communicate effortlessly on a new topic?",
+      id: 5
+    },
+    {
+      text: "Are you good in sales /marketing? ",
+      id: 6
+    },
+    {
+      text: "Do you take initiative in problem solving by communication",
+      id: 7
+    },
+    {
+      text: "Do you appreciate when others communicate?",
+      id: 8
+    },
+  ]
   const skills = [
     {
       skill: "Avoiding Aggressiveness",
@@ -335,26 +374,139 @@ export default function Dashboard() {
       id: 6,
     },
   ];
+  const group3 = [
+    {
+      videos: [
+        {
+          id: 1,
+          link: "https://www.youtube.com/embed/NY1u3p0Hw7A",
+        },
+        {
+          id: 2,
+          link: "https://www.youtube.com/embed/vlwmfiCb-vc",
+        },
+        {
+          id: 3,
+          link: "https://www.youtube.com/embed/TQ33fPD7ntA",
+        },
+        {
+          id: 4,
+          link: "https://www.youtube.com/embed/6s3E9xp_qdE",
+        },
+        {
+          id: 5,
+          link: "https://www.youtube.com/embed/c37dudFXmzA",
+        },
+        {
+          id: 6,
+          link: "https://www.youtube.com/embed/-AtnrOYflhc",
+        },
+      ],
+    },
+  ];
+
+  const Contents =[
+    {
+        type:"kids",
+        videos:[
+            {
+                id: 1,
+                link: "https://www.youtube.com/embed/TIAyxvL54F0",
+              },
+              {
+                id: 2,
+                link: "https://www.youtube.com/embed/DR-cfDsHCGA",
+              },
+              {
+                id: 3,
+                link: "https://www.youtube.com/embed/vlwmfiCb-vc",
+              },
+              {
+                id: 4,
+                link: "https://www.youtube.com/embed/F-A0QwNjZxo",
+              },
+              {
+                id: 5,
+                link: "https://www.youtube.com/embed/oUNZhBwJkKU",
+              },
+              {
+                id: 6,
+                link: "https://www.youtube.com/embed/F-A0QwNjZxo",
+              },
+        ],
+        
+
+    },
+    {
+        type:"teenagers",
+        videos:[
+            {
+                id: 1,
+                link: "https://www.youtube.com/embed/Bk7MWcPjdUM",
+              },
+              {
+                id: 2,
+                link: "https://www.youtube.com/embed/6s3E9xp_qdE",
+              },
+              {
+                id: 3,
+                link: "https://www.youtube.com/embed/8hYTPl7MkiA",
+              },
+              {
+                id: 4,
+                link: "https://www.youtube.com/embed/6s3E9xp_qdE",
+              },
+              {
+                id: 5,
+                link: "https://www.youtube.com/embed/c37dudFXmzA",
+              },
+              {
+                id: 6,
+                link: "https://www.youtube.com/embed/-AtnrOYflhc",
+              },
+        ],
+        books:[
+            {
+                id:1,
+                bookName:'Name',
+                image:'htttps://i.pravata.cc'
+            },
+            {
+                id:1,
+                bookName:'Name',
+                image:'htttps://i.pravata.cc'
+            }
+            ,
+            {
+                id:1,
+                bookName:'Name',
+                image:'htttps://i.pravata.cc'
+            }
+        ]
+
+    },
+]
+
   const [options] = useState(skills);
 
   // Helper Functions
   const checkStudent = () => {
     console.log(+student.group);
     let age = +student.group;
-
+    console.log("age🙏🙏🙏" + age);
     if (age < 3) {
       // setExam(false)
       console.log("age less than 3");
       return age;
     }
   };
-  //  checkStudent();
+  checkStudent();
   /* A possible answer was clicked */
 
   //array wanna fetch the questions to the database
   const [array, setArray] = useState([]);
   const [skillsImprove, setSkillImprove] = useState([]);
-
+  console.log(array);
   // console.log(array);
   const optionClicked = (isCorrect, value) => {
     console.log(value);
@@ -386,6 +538,11 @@ export default function Dashboard() {
   };
 
   console.log(skillsImprove);
+  ///assesment
+
+  const [value, setValue] = React.useState(2);
+  console.log(value);
+
   return (
     <>
       {end ? (
@@ -399,7 +556,7 @@ export default function Dashboard() {
           >
             <Box sx={style}>
               <>
-                {!assessmentTaken  ? (
+                {!assessmentTaken && student.group >= 3 ? (
                   <div className="assessment">
                     {showResults ? (
                       /* 4. Final Results */
@@ -430,48 +587,49 @@ export default function Dashboard() {
                         <h2 className="qoq">
                           Question: {currentQuestion} Out of{questions.length}
                         </h2>
-                        {/* Current Question  */}
 
-                        <h3 className="question-text">
-                          {questions[currentQuestion].text}
-                        </h3>
+                        {student.group == 4 ? (
+                          <>
+                            <h3 className="question-text">
+                              {questions[currentQuestion].text}
+                            </h3>
 
-                        {/* List of possible answers  */}
-                        {
-                          checkStudent() === '4' ? <ul>
-                          {questions[currentQuestion].options.map((option) => {
-                            return (
-                              <li
-                                key={option.id}
-                                value={option.id}
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  optionClicked(option.isCorrect, option);
-                                }}
-                              >
-                                {option.text}
-                              </li>
-                            );
-                          })}
-                        </ul>:
-                        <ul>
-                           {questions[currentQuestion].options.map((option) => {
-                            return (
-                              <li
-                                key={option.id}
-                                value={option.id}
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  optionClicked(option.isCorrect, option);
-                                }}
-                              >
-                                {option.text}
-                              </li>
-                            );
-                          })}
-                        </ul>
-                        }
-                        
+                            <Rating
+                              name="simple-controlled"
+                              value={value}
+                              className="rating"
+                              onChange={(event, newValue) => {
+                                setValue(newValue);
+                                optionClicked(true, newValue);
+                              }}
+                            />
+                          </>
+                        ) : (
+                          <>
+                            <h3 className="question-text">
+                              {questions[currentQuestion].text}
+                            </h3>
+
+                            <ul>
+                              {questions[currentQuestion].options.map(
+                                (option) => {
+                                  return (
+                                    <li
+                                      key={option.id}
+                                      value={option.id}
+                                      onClick={(e) => {
+                                        e.preventDefault();
+                                        optionClicked(option.isCorrect, option);
+                                      }}
+                                    >
+                                      {option.text}
+                                    </li>
+                                  );
+                                }
+                              )}
+                            </ul>
+                          </>
+                        )}
                       </div>
                     )}
                   </div>
@@ -512,11 +670,10 @@ export default function Dashboard() {
             sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
             open={open}
             onClick={handleClose}
-            
           >
             <Box sx={style3} className="done_loti">
-            <iframe src="https://embed.lottiefiles.com/animation/80036" ></iframe>
-            <button>Explore Your Content</button>
+              <iframe src="https://embed.lottiefiles.com/animation/80036"></iframe>
+              <button>Explore Your Content</button>
             </Box>
           </Backdrop>
           <div className="MainDash">
@@ -537,84 +694,71 @@ export default function Dashboard() {
               <Cards></Cards>
               <h4>Video Recommendation </h4>
               <div className="videos">
-                <div className="video">
-                  <iframe
-                    width="560"
-                    height="315"
-                    src="https://www.youtube.com/embed/NY1u3p0Hw7A"
-                    title="YouTube video player"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
-                  ></iframe>
-                </div>
-                <div className="video">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/vlwmfiCb-vc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-
-                <div className="video">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/TQ33fPD7ntA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                
-                <div className="video">
-
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/6s3E9xp_qdE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <div className="video">
-
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/c37dudFXmzA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <div className="video">
-
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/-AtnrOYflhc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+              {
+                student.group < 3 ?   <>
+                {Contents[0].videos.map((video) => {
+                  return (
+                    <div className="video">
+                      <iframe
+                        width="560"
+                        height="315"
+                        src={video.link}
+                        title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                      ></iframe>
+                    </div>
+                  );
+                })}
+            
+            </>:
+              <>
+              {Contents[1].videos.map((video) => {
+                return (
+                  <div className="video">
+                    <iframe
+                      width="560"
+                      height="315"
+                      src={video.link}
+                      title="YouTube video player"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                    ></iframe>
+                  </div>
+                );
+              })}
+          
+          </>
+              }
+              
+             
               </div>
-              <h4>Recommended Books</h4>
-              <div className="Books">
-                <div className="book">
-                  <img
-                    src="https://images-na.ssl-images-amazon.com/images/I/81wgcld4wxL.jpg"
-                    alt="bookName"
-                  ></img>
-                  <strong>Atomic Habits</strong>
-                  <p>Lorem ipsum, dolor sit Earum, obcaecati?</p>
-                  <a href="https://article.com" target="_blank">
-                    Book Link
-                  </a>
-                </div>
-                <div className="book">
-                  <img
-                    src="https://rukminim1.flixcart.com/image/416/416/kq9ta4w0/book/p/o/k/tiny-habits-the-small-changes-that-change-everything-paperback-original-imag4bcrqajg9vmc.jpeg?q=70"
-                    alt="bookName"
-                  ></img>
-                  <strong>Tiny Habits</strong>
-                  <p>Lorem ipsum, dolor sit Earum, obcaecati?</p>
-                  <a href="https://article.com" target="_blank">
-                    Book Link
-                  </a>
-                </div>
-                <div className="book">
-                  <img
-                    src="https://kbimages1-a.akamaihd.net/351dd875-2dce-409c-a7f0-459379218af0/1200/1200/False/how-to-talk-to-anyone-at-work-72-little-tricks-for-big-success-communicating-on-the-job.jpg"
-                    alt="bookName"
-                  ></img>
-                  <strong>Communication skills </strong>
-                  <p>Lorem ipsum, dolor sit Earum, obcaecati?</p>
-                  <a href="https://article.com" target="_blank">
-                    Book Link
-                  </a>
-                </div>
-                <div className="book">
-                  <img
-                    src="https://images-na.ssl-images-amazon.com/images/I/81wgcld4wxL.jpg"
-                    alt="bookName"
-                  ></img>
-                  <strong>Atomic Habits</strong>
-                  <p>Lorem ipsum, dolor sit Earum, obcaecati?</p>
-                  <a href="https://article.com" target="_blank">
-                    Book Link
-                  </a>
-                </div>
-              </div>
+
+              {student.group >= 3 ? (
+                <>
+                  <h4>Recommended Books</h4>
+                  <div className="Books">
+                    {Contents[1].books.map((book) => {
+                      console.log(book.bookName);
+                      return (
+                        <div className="book">
+                          <img src={book.image} alt={book.bookName}></img>
+                          <strong>{book.bookName}</strong>
+                          <p>{book.about}</p>
+                          <a href="https://article.com" target="_blank">
+                            Book Link
+                          </a>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </>
+              ) : (
+                ""
+              )}
+
               <h4>Others </h4>
               <p>Some extra Activities</p>
               <div className="club">
@@ -626,7 +770,9 @@ export default function Dashboard() {
                 </div>
                 <h5>Speaking Club</h5>
                 <p>Lorem ipsum dolor sit amet lobhhj</p>
-                <a href="https://i.pravatar.cc">Join Now</a>
+                <a href="https://t.me/+IPbHdfOVvAU2MjFl" target={"_blank"}>
+                  Join Now
+                </a>
               </div>
             </div>
           </div>
