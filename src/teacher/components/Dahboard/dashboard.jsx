@@ -31,9 +31,7 @@ export default function Dashboard() {
             <span>
               Shool ID: <p>1222221</p>
             </span>
-            <span>
-              Adhar No: <p>1323232</p>
-            </span>
+           
             <span>
               Dob: <p>11/22/0200</p>
             </span>
@@ -49,9 +47,7 @@ export default function Dashboard() {
             <span>
               Shool ID: <p>1222221</p>
             </span>
-            <span>
-              Adhar No: <p>1323232</p>
-            </span>
+           
             <span>
               Dob: <p>11/22/0200</p>
             </span>
@@ -67,9 +63,7 @@ export default function Dashboard() {
             <span>
               Shool ID: <p>1222221</p>
             </span>
-            <span>
-              Adhar No: <p>1323232</p>
-            </span>
+           
             <span>
               Dob: <p>11/22/0200</p>
             </span>
@@ -125,7 +119,7 @@ export default function Dashboard() {
               <button style={{ background: "#d00000" }}>Cancel</button>
               <button>View</button>
             </div>
-          </div>MOTHERBOARD
+          </div>
         </div>
        
        

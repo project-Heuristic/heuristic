@@ -115,7 +115,7 @@ export default function Dashboard() {
   const [problemsChoosen, setProblemsChoosen] = useState(false);
 
   const [exam, setExam] = useState(false);
-const [appointment, setAppointment] = useState(false);
+const [asd, setAsd] = useState(false);
   const questions = [
     {
       text: " In my study environment, it is most important to me..",
@@ -550,6 +550,8 @@ const [appointment, setAppointment] = useState(false);
     }
   };
 
+  const [stepp,setstepp] = useState(1);
+const [booked,setBooked]=useState(false)
   const [open, setOpen] = React.useState(true);
   const [open2, setOpen2] = React.useState(false);
   const handleClose = () => {
@@ -695,7 +697,7 @@ const [appointment, setAppointment] = useState(false);
         <>
           <Backdrop
             sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-            open={open}
+            open={asd}
             onClick={handleClose}
           >
             <Box sx={style3} className="done_loti">
@@ -704,18 +706,21 @@ const [appointment, setAppointment] = useState(false);
             </Box>
           </Backdrop>
          
-          {/* <Backdrop
+          <Backdrop
             sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-            open={appointment}
-            onClick={setAppointment(false)}
+            open={asd}
           >
             <Box sx={style5} className="appointment_loti">
-        <b>  Schedule An Appointment With Expert</b>
-        <span>Date :<input  type="date"></input></span>
-        <span>Time :<input  type="time"></input></span>
-              <button onClick={()=>setAppointment(false)}>Book Appointment</button>
-            </Box>
-          </Backdrop> */}
+           
+                   <b>  Schedule An Appointment With Expert</b>
+              <span>Date :<input  type="date"></input></span>
+              <span>Time :<input  type="time"></input></span>
+                    <button onClick={()=>{setAsd(false);setBooked(false)}}>Book Appointment</button>
+         
+                  </Box>
+           
+           
+          </Backdrop>
 
 
           <div className="MainDash">
@@ -737,7 +742,7 @@ const [appointment, setAppointment] = useState(false);
               <div className="session_join">
               <h2>Attend A Session</h2> <br></br>
 
-              <button className="slot_book">Book Slot</button>
+              <button className="slot_book" onClick={()=>setAsd(true)}>Book Slot</button>
               </div>
               <h4>Video Recommendation </h4>
               <div className="videos">
