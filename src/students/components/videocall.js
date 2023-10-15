@@ -10,7 +10,7 @@ import io from "socket.io-client"
 import "./videoCall.scss"
 
 
-const socket = io.connect('http://localhost:5000')
+const socket = io.connect('https://heuristic-server.onrender.com/')
 function VideoCall() {
 	const [ me, setMe ] = useState("")
 	const [ stream, setStream ] = useState()
