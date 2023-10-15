@@ -39,7 +39,7 @@ const navigate =useNavigate();
 
       <b>
 
-        HEURISTIC
+        HEURISTIC⚡
 
       </b>
       </Bounce>
